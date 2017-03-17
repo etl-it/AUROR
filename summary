@@ -1,1 +1,110 @@
 
+/**************************************************************************************
+- No hay llamadas a funciones; sí hace llamadas a los distintos tests (son los INCLUDE)
+- Lo primero que hace es la definición de una serie de variables; hay un INCUDE para ello también (consts)
+
+/**************************************************************************************
+
+## CONFIGURATION OF INCLUDE PATHS AND FILES
+  - Test from which directoires we can use all functions and tests
+  - Test for database directory
+  - Import translations
+  - Auto detection of language based on locale. Set to English when nothing found
+
+## Check user to determine file permissions later on. If we encounter Solaris, use related id binary instead
+
+## BIN PATHS, TEXT STRING, COLORS
+  - Perform a basic check for permissions
+    -- Change ownership to root hear
+    
+## TRAPS 
+  - Trap Cleanup ??
+  
+## PARAMETERS CHECKS 
+  - Determinate if we are root
+  - Disble logging if no alternative was provided
+ 
+## PROGRAM INFORMATION 
+  - Current version
+ 
+## INITIALIZE & DEFAULT SETTINGS 
+  - Program name, program version 
+  
+## PID : Check PID file, to avoid multiple instances running at the same time
+  - Decide where to write our PID file. For unprivileged users this will be in their home directory ,
+    or /tmp if their home direcotry is not set. For root it will be /var/run, or the current working directory 
+    if /var/run does not exit. 
+      - Quit directly for Cron Jobs : Quitting to prevent multiple cron jobs runnig at the same time
+      - Ensure symlinks attack is not possible, by confirming there is no symlink of the file already
+      - Create new PID file writable only by owner
+      
+## CHECK PROGRAM PARAMETERS 
+  - Bail out if we did not get any parameter, or incorrect ones
+  ------>>>> Menú
+  
+## OS DETECTION 
+  - Check hostname
+
+## CLEAR LOG & REPORT FILES 
+  - Clear log file and test if it's writable
+  - Clear report file (to avoid appending an existing file)
+
+## READ PROFILE, SET CODE CHECKS, DEFINE LANGUAGE
+   - Define if we keep working in strict mode (development) ??
+   - Imported a different language when configured 
+   - Pre-execution tests 
+
+## PLUGINS 
+  - Plugin directory test 
+  - DRop out if our pluging directory can not be found 
+ 
+## SHOW PROGRAM INFORMATION TO DISPLAY 
+  ------>>>> Menú
+  
+## CHECK FOR PROGRAM UPDATE (and friendly force to upgrade)
+  - Test for older releases , whithout testing via update mechanism
+  - Show on script message if released is very outdated
+   ------>>>> Menú
+   
+## CHECK WHICH BINARIES ARE AVAILABLE TO THE SCANNING PROCESS
+
+## HARDWARE DETECTIONS CAPABILITIES 
+  - Is virtual Machine
+  - Is container
+  - Is notebook
+
+## CHECK FOR systemd PRESENCE
+
+## VERBOSE
+
+## PLUGINGS
+
+## GET HOST ID
+
+## TESTs SECTION
+
+## RUN HELPERS
+
+## RUN PHASE 2 OF PLUGINGS
+
+## SHOW TEST RESULTS OVERVIEW
+  - Store total performed tests
+  - Show report 
+  - Show tool tips
+  - Upload data 
+  - Clean exit
+
+/**************************************************************************************
+
+### INCLUDES
+  
+  A) TESTs
+    * ACCOUNTING -> Check availability FreeBSD accounting data
+    * AUTHENTICATION -> User, Group and authentication tests. Check users with UID
+    * BANNERS -> Banners and identification. Check FreeBSD COPYRIGHT banner file
+    * BOOT & SERVICES -> Check for AIX boot device
+    * CONTATINERS -> Query running Solaris zones
+    * CRYPTOGRAPHY -> Check for expired SSL certificates
+    * CUSTOM.TEMPLATE -> Some linesare shown in the screen
+  
+
