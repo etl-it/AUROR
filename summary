@@ -2,19 +2,20 @@
 **** PROYECTO AUROR ****
 ************************************************************************************************************************
 ************************************************************************************************************************
-Este proyecto tiene como base la realización de un sistema de auditoría de seguridad para los clientes de aulas.
-Servirá para pasar una serie de tests en bloque, de forma que sea posible conocer si el equipo al completo funciona bien. 
+El proyecto tiene como base la realización de un sistema de auditoría de seguridad para los clientes de aulas.
+Servirá para pasar una serie de tests en bloque, de forma que sea posible conocer si el equipo al completo tiene un 
+funcionamiento correcto. 
 Entre otras cosas, se busca que verifique:
-- si los dispositivos hardware (discos duros, tarjetas de prácticas...) están en  correcto estado
-- si la clonación del equipo en cuestión es la correcta
-- si la configuración de red es la correcta
+- que los dispositivos hardware (discos duros, tarjetas de prácticas...) estén en  correcto estado
+- que la clonación del equipo en cuestión es la correcta
+- que la configuración de red es la correcta
 
 ************************************************************************************************************************
 
 1. FUENTES
 
 Como fuente principal he tomado la auditoría ya existente 'Lynis'. Este programa lleva a cabo una serie de tests 
-individuales,sirviendo cada uno de ellos para determinar el estado de seguridad del sistema. 
+individuales, sirviendo cada uno de ellos para determinar el estado de seguridad del sistema. 
 Más o menos, los pasos que lleva a cabo son los siguientes: 
   1- Determinación del sistema operativo
   2. Búsqueda de herramientas y utilidades disponibles
