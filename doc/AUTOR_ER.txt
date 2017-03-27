@@ -1,0 +1,78 @@
+Especificación de requisitos.
+
+1- Introducción.
+
+2 -Referencias.
+
+   ECSS-E-40
+
+3- Definiciones, acrónimos y Abreviaturas.
+
+4- Descripción general.
+5- Especificación de requisitos.
+
+   Características de los requisitos.
+
+   Necesidad:
+
+     - Obligatoria; de cumplimento obligatorio.
+     - Deseable; es necesaria una justificación si no se realiza.
+     - No Obligatoria; no es necesaria una justificación si no se realiza.
+
+   Prioridad:
+
+     - Alta; debe cumplirse lo antes posible
+     - Media; aconsejable cumplirla lo antes posible pero existe otro
+              grupo de requisitos con mayor prioridad.
+     - Baja; Requisito de menor prioridad.
+
+   Fuente:
+
+     Origen del requisito
+
+   Claridad:
+
+     Grado de entendimiento del requisitos; Alta, Media o Baja
+
+   Estable:
+
+     Estabilidad del requisito a lo largo del ciclo de vida
+     del proyecto; Si, o No
+     
+   Verificabilidad:
+
+     Indica cuál es el grado de necesidad de verificación del
+     requisito; Alta, Media o Baja.
+
+     5-1 Requisitos generales.
+   5-2 Requisitos de capacidad.
+
+   [UR1] - Descripción ...
+
+      Necesidad:
+
+      Prioridad:
+
+      Fuente:
+
+      Claridad:
+
+      Estable: Si/No
+
+      Verificabilidad: Alta/Media/Baja
+
+  5-3 Requisitos de interfaz del sistema.
+
+   [URx] - ...
+
+  5-4 Requisitos de entorno operacional.
+
+  5-5 Requisitos Computacionales.
+  5-6 Requisitos de seguridad.
+  5-7 Requisitos de fiabilidad.
+  5-8 Requisitos de calidad.
+  5-9 Requisitos  de diseño y restricción.
+  5-10 Requisitos de procedimiento.
+  5-11 Requisitos de mantenimiento.
+  6 – Validación de los requisitos y su aplicación.
+  7- Trazabilidad
