@@ -23,14 +23,26 @@
 1) INTRODUCCIÓN 
     En el presente documento se detallarán los requerimientos del proyecto Auror. Será un documento en constante cambio ya que se
     irán añadiendo nuevas funcionalidades.
-    Los requisitos serán clasificados de acuerdo con 6 aspectos básicos: 
-      1.- Necesidad
-      2.- Prioridad
-      3.- Fuente
-      4.- Claridad
-      5.- Estable
-      6.- Verificabilidad
+    Los requisitos serán clasificados de acuerdo con 6 aspectos básicos:
     
+      1.- Necesidad : 
+            - Obligatoria (O), si es de cumplimento obligatorio.
+            - Deseable (D), es necesaria una justificación si no se realiza.
+            - No Obligatoria (NO),  no es necesaria una justificación si no se realiza.
+            
+      2.- Prioridad
+            - Alta (A), si debe cumplirse lo antes posible
+            - Media (M), si es aconsejable cumplirla lo antes posible pero existe otro grupo de requisitos con mayor prioridad.
+            - Baja (B), si es un requisito de menor prioridad.
+            
+      3.- Fuente: Origen del requisito
+      
+      4.- Claridad (A/M/B): Grado de entendimiento del requisito
+      
+      5.- Estable (S/N), estabilidad del requisito a lo largo del ciclo de vida del proyecto
+      
+      6.- Verificabilidad (A/M/B), grado de necesidad de verificación del requisito
+   
 2) REFERENCIAS 
 
 3) DEFINICIONES, ACRÓNIMOS y ABREVIATURAS
@@ -40,12 +52,12 @@
 5) ESPECIFICACIÓN DE REQUISITOS
     5-1) Requisitos generales
              - Sistema Operativo Linux de 64-bit
-                  1.- Necesidad
-                  2.- Prioridad
-                  3.- Fuente
-                  4.- Claridad
-                  5.- Estable
-                  6.- Verificabilidad
+                  1.- Necesidad : O
+                  2.- Prioridad : A
+                  3.- Fuente :-
+                  4.- Claridad : -
+                  5.- Estable: S
+                  6.- Verificabilidad: A
 
 
 
