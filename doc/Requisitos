@@ -1,4 +1,5 @@
-***ÍNDICE***
+
+****ÍNDICE****
 *******************************************************************
     1- Introducción.
     2 -Referencias.
@@ -52,6 +53,14 @@
 5) ESPECIFICACIÓN DE REQUISITOS
     5-1) Requisitos generales
              - Sistema Operativo Linux de 64-bit
+                  1.- Necesidad : O
+                  2.- Prioridad : A
+                  3.- Fuente :-
+                  4.- Claridad : -
+                  5.- Estable: S
+                  6.- Verificabilidad: A
+                  
+              - 1 GB de memoria libre como mínimo
                   1.- Necesidad : O
                   2.- Prioridad : A
                   3.- Fuente :-
