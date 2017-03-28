@@ -23,5 +23,29 @@
 1) INTRODUCCIÓN 
     En el presente documento se detallarán los requerimientos del proyecto Auror. Será un documento en constante cambio ya que se
     irán añadiendo nuevas funcionalidades.
+    Los requisitos serán clasificados de acuerdo con 6 aspectos básicos: 
+      1.- Necesidad
+      2.- Prioridad
+      3.- Fuente
+      4.- Claridad
+      5.- Estable
+      6.- Verificabilidad
     
 2) REFERENCIAS 
+
+3) DEFINICIONES, ACRÓNIMOS y ABREVIATURAS
+
+4) DESCRIPCIÓN GENERAL
+
+5) ESPECIFICACIÓN DE REQUISITOS
+    5-1) Requisitos generales
+             - Sistema Operativo Linux de 64-bit
+                  1.- Necesidad
+                  2.- Prioridad
+                  3.- Fuente
+                  4.- Claridad
+                  5.- Estable
+                  6.- Verificabilidad
+
+
+
