@@ -157,13 +157,22 @@ respecto a Lynis.
         * CONTATINERS -> Query running Solaris zones
         * CRYPTOGRAPHY -> Check for expired SSL certificates
         * CUSTOM.TEMPLATE -> Some linesare shown in the screen
-
+     
+     3.3 BASE DE DATOS 
+         PostgreSQL 
+         
+     3.4 TIPOS DE USUARIOS
+     
+          Super Users
+          Normal Users
+          Functional Users
+          
 4. Descripción funcional de Auror.
 
 4.1 Inicialización
 
     4.1.1 Configuración
-    4.1.2 Base de datos ????
+    4.1.2 Base de datos  
     4.1.2 Comprobación
 
 4.2 Identificar objetivo: sistema sobre el que se realizara comprobación
