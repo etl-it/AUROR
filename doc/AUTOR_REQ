@@ -21,7 +21,7 @@
     7- Trazabilidad
 *******************************************************************
 
-1) INTRODUCCIÓN 
+1) INTRODUCCIÓN Interfaz gráfico y/o de texto
     En el presente documento se detallarán los requerimientos del proyecto Auror. Será un documento en constante cambio ya que se
     irán añadiendo nuevas funcionalidades.
     Los requisitos serán clasificados de acuerdo con 6 aspectos básicos:
@@ -64,73 +64,80 @@
     3.- Definir acciones en función del resultado de cada uno de los tests
 
 5) ESPECIFICACIÓN DE REQUISITOS
-5-1) Requisitos generales
-             
+    5-1) Requisitos generales
+    
+        ER1.- Núcleo o core encargado de cargar e interpretar los módulos correspondientes 
+            a cada uno de los test 
+            1.- Necesidad : OBLIGATORIA
+            2.- Prioridad : ALTA
+            3.- Fuente : ETL
+            4.- Claridad : -
+            5.- Estable: SÍ
+            6.- Verificabilidad: ALTA
 
-ER3.- Núcleo o core encargado de cargar e interpretar los módulos correspondientes 
-a cada uno de los test 
-1.- Necesidad : OBLIGATORIA
-2.- Prioridad : ALTA
-3.- Fuente : ETL
-4.- Claridad : -
-5.- Estable: SÍ
-6.- Verificabilidad: ALTA
-
-ER4.-Diferentes módulos configurables y seleccionables
-1.- Necesidad : OBLIGATORIA
-2.- Prioridad : ALTA
-3.- Fuente : ETL
-4.- Claridad : -
-5.- Estable: SÍ
-6.- Verificabilidad: ALTA
-ER5.-Portabilidad
-1.- Necesidad : OBLIGATORIA
-2.- Prioridad : ALTA
-3.- Fuente : ETL
-4.- Claridad : -
-5.- Estable: SÍ
-6.- Verificabilidad: ALTA
-                  
-5-2) Requisitos de capacidad
+        ER2.-Diferentes módulos configurables y seleccionables
+            1.- Necesidad : OBLIGATORIA
+            2.- Prioridad : ALTA
+            3.- Fuente : ETL
+            4.- Claridad : -
+            5.- Estable: SÍ
+            6.- Verificabilidad: ALTA
+        ER3.-Portabilidad
+            1.- Necesidad : OBLIGATORIA
+            2.- Prioridad : ALTA
+            3.- Fuente : ETL
+            4.- Claridad : -
+            5.- Estable: SÍ
+            6.- Verificabilidad: ALTA
+    5-2) Requisitos de capacidad
       
-5-3) Requisitos de interfaz del sistema
-ER6.- Interfaz gráfico y/o de texto
-1.- Necesidad : OBLIGATORIA
-2.- Prioridad : ALTA
-3.- Fuente : ETL
-4.- Claridad : -
-5.- Estable: SÍ
-6.- Verificabilidad: ALTA
+    5-3) Requisitos de interfaz del sistema
+        ER4.- Interfaz gráfico y/o de texto
+            1.- Necesidad : OBLIGATORIA
+            2.- Prioridad : ALTA
+            3.- Fuente : ETL
+            4.- Claridad : -
+            5.- Estable: SÍ
+            6.- Verificabilidad: ALTA
+            
+        ER5.- Parámetros pasados vía fichero de configuración o línea de comandos
+            1.- Necesidad : OBLIGATORIA
+            2.- Prioridad : ALTA
+            3.- Fuente : ETL
+            4.- Claridad : -
+            5.- Estable: SÍ
+            6.- Verificabilidad: ALTA
       
-5-4) Requisitos de entorno operacional
-ER1.- Sistema Operativo Linux de 64-bit
-1.- Necesidad : OBLIGATORIA
-2.- Prioridad : ALTA
-3.- Fuente : ETL
-4.- Claridad : -
-5.- Estable: SÍ
-6.- Verificabilidad: ALTA
+    5-4) Requisitos de entorno operacional
+        ER6.- Sistema Operativo Linux de 64-bit
+            1.- Necesidad : OBLIGATORIA
+            2.- Prioridad : ALTA
+            3.- Fuente : ETL
+            4.- Claridad : -
+            5.- Estable: SÍ
+            6.- Verificabilidad: ALTA
 
-ER2.- 1 GB de memoria libre como mínimo (VERIFICAR ESTE)
-1.- Necesidad : OBLIGATORIA
-2.- Prioridad : ALTA
-3.- Fuente : ETL
-4.- Claridad : -
-5.- Estable: SÍ
-6.- Verificabilidad: ALTA
-5-5) Requisitos computacionales
+        ER7.- 1 GB de memoria libre como mínimo (VERIFICAR ESTE)
+            1.- Necesidad : OBLIGATORIA
+            2.- Prioridad : ALTA
+            3.- Fuente : ETL
+            4.- Claridad : -
+            5.- Estable: SÍ
+            6.- Verificabilidad: ALTA
+            
+    5-5) Requisitos computacionales
 
-5-6) Requisitos de seguridad
+    5-6) Requisitos de seguridad
 
-5-7) Requisitos de fiabilidad
+    5-7) Requisitos de fiabilidad
 
-5-8) Requisitos de calidad
+    5-8) Requisitos de calidad
       
-5-9) Requisitos  de diseño y restricción
+    5-9) Requisitos  de diseño y restricción
 
-5-10) Requisitos de procedimiento
+    5-10) Requisitos de procedimiento
       
-5-11) Requisitos de mantenimiento
+    5-11) Requisitos de mantenimiento
     
 
 
