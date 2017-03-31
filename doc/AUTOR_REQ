@@ -1,0 +1,137 @@
+
+****ÍNDICE****
+*******************************************************************
+    1- Introducción.
+    2 -Referencias.
+    3- Definiciones, acrónimos y Abreviaturas.
+    4- Descripción general.
+    5- Especificación de requisitos.
+      5-1 Requisitos generales.
+      5-2 Requisitos de capacidad.
+      5-3 Requisitos de interfaz del sistema.
+      5-4 Requisitos de entorno operacional.
+      5-5 Requisitos Computacionales.
+      5-6 Requisitos de seguridad.
+      5-7 Requisitos de fiabilidad.
+      5-8 Requisitos de calidad.
+      5-9 Requisitos  de diseño y restricción.
+      5-10 Requisitos de procedimiento.
+      5-11 Requisitos de mantenimiento.
+    6 – Validación de los requisitos y su aplicación.
+    7- Trazabilidad
+*******************************************************************
+
+1) INTRODUCCIÓN 
+    En el presente documento se detallarán los requerimientos del proyecto Auror. Será un documento en constante cambio ya que se
+    irán añadiendo nuevas funcionalidades.
+    Los requisitos serán clasificados de acuerdo con 6 aspectos básicos:
+    
+      1.- Necesidad : 
+            - OBLIGATORIA, si es de cumplimento obligatorio.
+            - DESEABLE, es necesaria una justificación si no se realiza.
+            - NO OBLIGATORIA,  no es necesaria una justificación si no se realiza.
+            
+      2.- Prioridad
+            - ALTA, si debe cumplirse lo antes posible
+            - MEDIA, si es aconsejable cumplirla lo antes posible pero existe otro grupo de requisitos con mayor prioridad.
+            - BAJA, si es un requisito de menor prioridad.
+            
+      3.- Fuente: Origen del requisito
+      
+      4.- Claridad (ALTA/MEDIA/BAJA): Grado de entendimiento del requisito
+      
+      5.- Estable (SÍ/NO), estabilidad del requisito a lo largo del ciclo de vida del proyecto
+      
+      6.- Verificabilidad (ALTA/MEDIA/BAJA), grado de necesidad de verificación del requisito
+   
+2) REFERENCIAS 
+    
+    ECSS-E-40
+    
+3) DEFINICIONES, ACRÓNIMOS y ABREVIATURAS
+
+4) DESCRIPCIÓN GENERAL
+   
+   La idea es despleagar un sistema que nos permita auditar funcionalmente los clientes.
+   Queremos una herramienta modular que nos permita definir diferentes tests a aplicar sobre un sistema, tales como saber si
+   está instalado y operativo un determinado software, o si el sistema contiene un determinado soporte hardware.
+   Se quiere que el proyecto esté planeteado de forma que se puedan ir añadiendo plugins que permitan relalizar nuevos tests
+   sobre el sistema.
+   
+   Partimos de las siguientes tareas que el sistema debe permitir:
+    1.- Seleccionar que test aplicar o no
+    2.- Elaborar un informe sobre el resultado de los test aplicados
+    3.- Definir acciones en función del resultado de cada uno de los tests
+
+5) ESPECIFICACIÓN DE REQUISITOS
+5-1) Requisitos generales
+             
+
+ER3.- Núcleo o core encargado de cargar e interpretar los módulos correspondientes 
+a cada uno de los test 
+1.- Necesidad : OBLIGATORIA
+2.- Prioridad : ALTA
+3.- Fuente : ETL
+4.- Claridad : -
+5.- Estable: SÍ
+6.- Verificabilidad: ALTA
+
+ER4.-Diferentes módulos configurables y seleccionables
+1.- Necesidad : OBLIGATORIA
+2.- Prioridad : ALTA
+3.- Fuente : ETL
+4.- Claridad : -
+5.- Estable: SÍ
+6.- Verificabilidad: ALTA
+ER5.-Portabilidad
+1.- Necesidad : OBLIGATORIA
+2.- Prioridad : ALTA
+3.- Fuente : ETL
+4.- Claridad : -
+5.- Estable: SÍ
+6.- Verificabilidad: ALTA
+                  
+5-2) Requisitos de capacidad
+      
+5-3) Requisitos de interfaz del sistema
+ER6.- Interfaz gráfico y/o de texto
+1.- Necesidad : OBLIGATORIA
+2.- Prioridad : ALTA
+3.- Fuente : ETL
+4.- Claridad : -
+5.- Estable: SÍ
+6.- Verificabilidad: ALTA
+      
+5-4) Requisitos de entorno operacional
+ER1.- Sistema Operativo Linux de 64-bit
+1.- Necesidad : OBLIGATORIA
+2.- Prioridad : ALTA
+3.- Fuente : ETL
+4.- Claridad : -
+5.- Estable: SÍ
+6.- Verificabilidad: ALTA
+
+ER2.- 1 GB de memoria libre como mínimo (VERIFICAR ESTE)
+1.- Necesidad : OBLIGATORIA
+2.- Prioridad : ALTA
+3.- Fuente : ETL
+4.- Claridad : -
+5.- Estable: SÍ
+6.- Verificabilidad: ALTA
+5-5) Requisitos computacionales
+
+5-6) Requisitos de seguridad
+
+5-7) Requisitos de fiabilidad
+
+5-8) Requisitos de calidad
+      
+5-9) Requisitos  de diseño y restricción
+
+5-10) Requisitos de procedimiento
+      
+5-11) Requisitos de mantenimiento
+    
+
+
+
