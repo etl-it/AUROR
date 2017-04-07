@@ -1,0 +1,2 @@
+class periphericals(hardware):
+    pass
