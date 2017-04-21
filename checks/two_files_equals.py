@@ -160,8 +160,6 @@ def compare(file1,file2):
 
     for content1 in contents1:
         for content2 in contents2:
-            #content1 = line1[:-1]
-            #content2 = line2[:-1]
 
             #Manejar los disitintos tipos de comentarios segun tipo de archivo
             if properties_file1[0] != properties_file2[0]:
@@ -170,31 +168,37 @@ def compare(file1,file2):
 
                 #ya he verificado que los archivos sean del mismo tipo,
                 #entonces properties_file1 = properties_file2
-                if properties_file1[1] != None and properties_file1[1] != None:
+                if properties_file1[1] != None and properties_file1[2] != None: #es un fichero que puede tener comentarios
 
-                    if (content1.find(properties_file1[1]) != -1 and content1.find(properties_file1[2]) != -1):
-                        remove_double_comments(content1,properties_file1[1],properties_file1[2])
+                    if (content1.find(properties_file1[1]) != -1 and content1.find(properties_file1[2]) != -1): #si tiene comentarios de tio inicio-final
+                        remove_double_comments(content1,properties_file1[1],properties_file1[2]) #quito comentarios de inicio-final
                     pass
-                    if (content2.find(properties_file1[1]) != -1 and content2.find(properties_file1[2]) != -1):
+
+                    if (content2.find(properties_file1[1]) != -1 and content2.find(properties_file1[2]) != -1): #igual para el segundo fichero
                         remove_double_comments(content2,properties_file1[1],properties_file1[2])
                     pass
-                    if properties_file1[3] != None:
+
+                    if properties_file1[3] != None: #ahora compruebo si tambien tiene singulares para ambos
                         if (content1.find(properties_file1[3]) != -1):
                             remove_single_comments(content1,properties_file1[3])
                         pass
+
                         if (content2.find(properties_file1[3]) != -1):
                             remove_single_comments(content2,properties_file1[3])
                         pass
+
                     pass
-                elif properties_file1[3] != None:
+                elif properties_file1[3] != None: #no tiene dobles pero puede tener directamente singulares
                     if (content1.find(properties_file1[3]) != -1):
                         remove_single_comments(content1,properties_file1[3])
                     pass
+
                     if (content2.find(properties_file1[3]) != -1):
                         remove_single_comments(content2,properties_file1[3])
                     pass
-                else:
-                    print"\nThere are no comments to supress"
+                pass
+                #else:
+                    #print"\nThere are no comments to supress"
             pass
 
             if content1 == content2:
@@ -204,6 +208,7 @@ def compare(file1,file2):
             pass
     line1.close()
     line2.close()
+    outfile.close()
 
 
 def usage():
