@@ -4,7 +4,9 @@ import os
 import getopt
 import sys
 
-outfile = open("/usr/lab/alum/0330717/AUROR/salida.txt","w")
+#outfile = open("/usr/lab/alum/0330717/AUROR/salida.txt","w")
+outfile = open("./salida.txt","w")
+
 
 file1 = ''
 file1 = ''
