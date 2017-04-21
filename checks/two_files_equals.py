@@ -160,8 +160,8 @@ def compare(file1,file2):
 
     for content1 in contents1:
         for content2 in contents2:
-            content1 = line1[:-1]
-            content2 = line2[:-1]
+            #content1 = line1[:-1]
+            #content2 = line2[:-1]
 
             #Manejar los disitintos tipos de comentarios segun tipo de archivo
             if properties_file1[0] != properties_file2[0]:
@@ -194,13 +194,13 @@ def compare(file1,file2):
                         remove_single_comments(content2,properties_file1[3])
                     pass
                 else:
-                    print"\nThere are no commetns to supress"
+                    print"\nThere are no comments to supress"
             pass
 
             if content1 == content2:
                 outfile.write("The line is correct\n")
             else:
-                outfile.write("Values do not agree --> " + contents1 + "\n")
+                outfile.write("Values do not agree --> " + content1 + "\n")
             pass
     line1.close()
     line2.close()
