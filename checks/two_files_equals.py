@@ -152,49 +152,58 @@ def compare(file1,file2):
     properties_file1 = identify(file1)
     properties_file2 = identify(file2)
 
-    for line1, line2 in (file1, file2):
-        line1 = line1[:-1]
-        line2 = line2[:-1]
+    line1 = open(file1,'r')
+    line2 = open(file2,'r')
 
-        #Manejar los disitintos tipos de comentarios segun tipo de archivo
-        if properties_file1[0] != properties_file2[0]:
-            print("DIFFERENT: Directly, file extensions do not agree")
-        else:
+    contents1 = [line.strip() for line in open(file1)]
+    contents2 = [line.strip() for line in open(file2)]
 
-            #ya he verificado que los archivos sean del mismo tipo,
-            #entonces properties_file1 = properties_file2
-            if properties_file1[1] != None and properties_file1[1] != None:
+    for content1 in contents1:
+        for content2 in contents2:
+            content1 = line1[:-1]
+            content2 = line2[:-1]
 
-                if (line1.find(properties_file1[1]) != -1 and line1.find(properties_file1[2]) != -1):
-                    remove_double_comments(line1,properties_file1[1],properties_file1[2])
-                pass
-                if (line2.find(properties_file1[1]) != -1 and line2.find(properties_file1[2]) != -1):
-                    remove_double_comments(line2,properties_file1[1],properties_file1[2])
-                pass
-                if properties_file1[3] != None:
-                    if (line1.find(properties_file1[3]) != -1):
-                        remove_single_comments(line1,properties_file1[3])
-                    pass
-                    if (line2.find(properties_file1[3]) != -1):
-                        remove_single_comments(line2,properties_file1[3])
-                    pass
-                pass
-            elif properties_file1[3] != None:
-                if (line1.find(properties_file1[3]) != -1):
-                    remove_single_comments(line1,properties_file1[3])
-                pass
-                if (line2.find(properties_file1[3]) != -1):
-                    remove_single_comments(line2,properties_file1[3])
-                pass
+            #Manejar los disitintos tipos de comentarios segun tipo de archivo
+            if properties_file1[0] != properties_file2[0]:
+                print("DIFFERENT: Directly, file extensions do not agree")
             else:
-                print"\nThere are no commetns to supress"
-        pass
 
-        if line1 == line2:
-            outfile.write("The line is correct\n")
-        else:
-            outfile.write("Values do not agree --> " + line1 + "\n")
-        pass
+                #ya he verificado que los archivos sean del mismo tipo,
+                #entonces properties_file1 = properties_file2
+                if properties_file1[1] != None and properties_file1[1] != None:
+
+                    if (content1.find(properties_file1[1]) != -1 and content1.find(properties_file1[2]) != -1):
+                        remove_double_comments(content1,properties_file1[1],properties_file1[2])
+                    pass
+                    if (content2.find(properties_file1[1]) != -1 and content2.find(properties_file1[2]) != -1):
+                        remove_double_comments(content2,properties_file1[1],properties_file1[2])
+                    pass
+                    if properties_file1[3] != None:
+                        if (content1.find(properties_file1[3]) != -1):
+                            remove_single_comments(content1,properties_file1[3])
+                        pass
+                        if (content2.find(properties_file1[3]) != -1):
+                            remove_single_comments(content2,properties_file1[3])
+                        pass
+                    pass
+                elif properties_file1[3] != None:
+                    if (content1.find(properties_file1[3]) != -1):
+                        remove_single_comments(content1,properties_file1[3])
+                    pass
+                    if (content2.find(properties_file1[3]) != -1):
+                        remove_single_comments(content2,properties_file1[3])
+                    pass
+                else:
+                    print"\nThere are no commetns to supress"
+            pass
+
+            if content1 == content2:
+                outfile.write("The line is correct\n")
+            else:
+                outfile.write("Values do not agree --> " + contents1 + "\n")
+            pass
+    line1.close()
+    line2.close()
 
 
 def usage():
