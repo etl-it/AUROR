@@ -29,7 +29,7 @@ class Host(object):
 
     def __del__(self):
         if self.client:
-            self.client.close()
+        self.client.close()
 
     #def add_host(client):
     #    self.my_hosts.append(client)

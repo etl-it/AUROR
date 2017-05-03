@@ -2,7 +2,7 @@ import paramiko
 import subprocess
 import os
 import sys
-import utils 
+
 from argparse import ArgumentParser
 
 def get_ssh_client(host,username,password,timeout):
