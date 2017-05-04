@@ -11,14 +11,14 @@ import subprocess
 #La funcion devuelve el codigo de salida del comando ping_output_code
 def ping_output_code(hostname):
 
-    output_code = subprocess.call(['ping', '-c', '5', '-w', '3', hostname],
+    output_code = subprocess.call(['ping', '-c', '5', '-w', '15', hostname],
                                     stdout = open(os.devnull,'w'),
                                     stderr = open(os.devnull,'w'))
     return output_code
 
 
 #-----------------------------------------------------------------------------
-#Para cada hostname dela lista, se verifica si hay ping
+#Para cada hostname de la lista, se verifica si hay ping
 #Develve un objeto dict donde key = hostaname
 #                             values = return code del ping
 #Los host sona verificar son los de nuestro sistema ((??? DECALARAR COMO UNA ESPECIE DE CTES???))
@@ -34,8 +34,8 @@ def verify_host_list(host_list):
 def main():
     ##????VER SI DE ALGNA FORMA ESTO LO PUEDO SACAR FUERA
     host_to_test = [
-        'google.com'
-        '163.117.144.243' ##alcazar01.lab.it.uc3m.es
+        'google.com',
+        '163.117.144.243', ##alcazar01.lab.it.uc3m.es
         '163.117.168.105'
     ]
     print verify_host_list(host_to_test)
