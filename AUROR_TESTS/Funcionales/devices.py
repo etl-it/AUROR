@@ -7,21 +7,14 @@ import shlex
 #subprocess.Popen
 #to run a process and read all of its output, set the stdout value to PIPE and call communicate()
 
-#this script ĺl wait for the process to complete and the it will display the output
+#this script will wait for the process to complete and the it will display the output
 #what we dp is reading the stdout line by line and display it in the console until it completes the process
 
 #poll() => it returns the exit code if the process is completed or none if the process is still running
 
 
 def catch_lspci():
-    process = subprocess.Popen('lspci', stdout = subprocess.PIPE)
-    stdout = process.communicate()[0]
-    print 'STDOUT:{}'.format(stdout)
-
-    output = process.stdout.readLine()
-
-    process.poll()
-
+    process = subprocess.Popen(shlex.split('lspci'), stdout = subprocess.PIPE)
 
     while True:
         output = process.stdout.readline()
@@ -30,7 +23,13 @@ def catch_lspci():
         if output:
             print output.strip()
 
-        rc = process.poll()
+    rc = process.poll()
+    return rc
 
 
-        http://blog.endpoint.com/2015/01/getting-realtime-output-using-python.html
+def main():
+
+    print catch_lspci()
+
+if __name__ == '__main__':
+    main()
