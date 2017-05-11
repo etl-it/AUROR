@@ -5,7 +5,7 @@ import subprocess
 
 def define_architecture():
     process = subprocess.Popen(['uname', '-m'],
-    
+
                                 stdout = subprocess.PIPE,
                                 )
     out_value = process.communicate()[0]

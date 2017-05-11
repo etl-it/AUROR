@@ -1,9 +1,6 @@
 import os
 import subprocess
 
-##class network(hardware,software):
-##    pass
-
 #-----------------------------------------------------------------------------
 #Uso del comando de bash 'ping' para ver si existe conectividad
 #lista de host (anadir lista de hosts).
