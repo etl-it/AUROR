@@ -62,4 +62,11 @@ def catherNameGen(n):
                 for i in cathcerNameGen(times)]
 
     for catcher in catchers:
-        catcher.one(test_to_check)
+        catcher.one(test_to_check
+
+
+def main():
+
+
+if __name__ == '__main__':
+    main()
