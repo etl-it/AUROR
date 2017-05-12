@@ -5,10 +5,10 @@ import random
 import os
 import subprocess
 
-import test.py
-import conectivity.py
-import devices.py
-import architecture.py
+from . Test import Test
+from connectivity.py import Connectivity
+from devices.py  import Devices
+from architecture.py import Architecture
 
 
 class CatcherFactory:
@@ -93,11 +93,11 @@ def catherNameGen(n):
                 for i in cathcerNameGen(times)]
 
     for catcher in catchers:
-        catcher.one(test_to_check
+        catcher.one(test_to_check)
 
 
 def main():
-
+    print("main")
 
 if __name__ == '__main__':
-main()
+    main()

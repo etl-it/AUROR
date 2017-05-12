@@ -6,7 +6,7 @@ import subprocess
 
 class Architecture(test):
 
-    def __init__(self, id, description, type, define_architecture)
+    def __init__(self, id, description, type, define_architecture):
         Architecture.__init__(self, id, description, "Software")
 
 
