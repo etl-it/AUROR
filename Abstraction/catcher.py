@@ -5,10 +5,10 @@ import random
 import os
 import subprocess
 
-from . Test import Test
-from connectivity.py import Connectivity
-from devices.py  import Devices
-from architecture.py import Architecture
+import AurorTest
+# from connectivity.py import Connectivity
+# from devices.py  import Devices
+# from architecture.py import Architecture
 
 
 class CatcherFactory:
