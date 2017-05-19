@@ -1,8 +1,12 @@
 
 from time import sleep
 
-#Variable global
-state = 'i'
+#Variables globales para definir los estados
+state_inic = 'i'
+state_config = 'c'
+state_basic_test = 'bc'
+state_my_test = 'mt'
+state_report = 'r'
 
 def INICIO(start,config):
     global state
@@ -10,6 +14,10 @@ def INICIO(start,config):
     print('Initial State')
     #Transiciones
     sleep(2)
+    if start == 0:
+        state = 'i'
+    if start == 1 and config == 1:
+        state =
 
 def CONFIG(start,config):
 
