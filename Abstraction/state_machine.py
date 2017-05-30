@@ -1,11 +1,6 @@
 
 from time import sleep
 
-
-@http://stg-pepper.blogspot.com.es/2016/04/maquina-de-estados-finitos-en-python.html
-@http://www.w3ii.com/es/automata_theory/moore_and_mealy_machines.html
-@http://recursospython.com/guias-y-manuales/multiprocessing-tareas-concurrentes-con-procesos/
-
 #Variables globales para definir los estados
 state_inic = 'i'
 state_config = 'c'
@@ -14,47 +9,60 @@ state_my_test = 'mt'
 state_report = 'r'
 
 def INICIO(start,config):
-    global state
+    global current_state
     print('Initial State')
     #Transiciones
     sleep(2)
     if start == 0:
-        state = 'i'
+        current_state = 'i'
     if start == 1 and config == 1:
-        state = 'c' #Pasamos al estado de configuración
-        print('Trasition to Config State') #Aquí habrá que pedir de algún modo los params de config
-                                            #o procesar si es que ya nos los han metido;
-                                            #he de ver cuál es la forma más óptima de realizar esto
+        current_state = 'c'
+        print('Trasition to Config State')
     if start == 1 and config == 0:
-        state = 'dt' #Pasamos al estado de test por defecto (test basico)
-        print('Trasition Basic test') #Aquí no va a tener que haber nigún manejo de parmas
-                                      #ya que esté test estará precargado por defecto
-
-
-
-######PROBLEMA: donde especifico que la configuracion se ha terminado????
-######----->>> MANEJAR LAS SALIDAS PARA QUE INFLUYAN EN LOS ESTADOS
-##OPCION UNO: Puedo pasar otras entradas con las que pueda calcular si ha termiando o no
-##OPCION DOS: Pasar directamente la salida aunque no acabo de verle todo el sentido
-
-def CONFIG(start): #aquí ya voy a tener que manejar una salida
-    global state
-
-    #variable para indicar si se ha terminado el proceso de configuración de nuestro test
-    config_done = 0
-
+        current_state = 'bt'
+        print('Trasition Basic test')
+        
+def CONFIG(start,config_done):
+    global current_state
     print('Config State')
     #Transiciones
     sleep(2)
+    if config_done == 1:
+        current_state = 'mt'
+        print('Transition to My Test')
+    if start == 1:
+        current_state = 's'
+        print('Back to Start')
 
-def BASIC_TEST(start):
+
+def BASIC_TEST(start,test_done):
     global state
     print('Basic Test State')
+    #Transiciones
+    sleep(2)
+    if test_done == 1:
+        current_state = 'r'
+        print('Transition to Report')
+    if start == 1:
+        current_state = 's'
+        print('Back to Start')
 
-def MY_TEST(start):
+
+def MY_TEST(start,test_done):
     global state
     print('My Test State')
+    #Transiciones
+    sleep(2)
+    if test_done == 1:
+        current_state = 'r'
+        print('Transition to Report')
+    if start == 1:
+        current_state = 's'
+        print('Back to Start')
 
-def REPORT(start):
+def REPORT(start,report_done):
     global state
     print('Report State')
+    if start == 1 or report_done == 1:
+        current_state = 's'
+        print('Back to Start')
