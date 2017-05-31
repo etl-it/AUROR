@@ -19,6 +19,7 @@ while True:
 
     if optionMenu == 1:
             print("Auror will operate in default mode. You dont have to configure any other parameter")
-    elif optionMenu2 == 2:
+            break
+    elif optionMenu == 2:
         print("You are gonna to personalize your own test")
         optionMenu2 = input("Please, select the configure parameters >>")
