@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-class Test(object):
+class AurorTest(object):
 
     def __init__ (self, id, description, type):
         self.id = id

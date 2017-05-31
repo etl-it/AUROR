@@ -6,10 +6,6 @@ import os
 import subprocess
 
 import AurorTest
-# from connectivity.py import Connectivity
-# from devices.py  import Devices
-# from architecture.py import Architecture
-
 
 class CatcherFactory:
 

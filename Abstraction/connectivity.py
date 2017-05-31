@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-class Connectivity(Test):
+class Connectivity(AurorTest):
 
     def __init__ (self, id, description, type, ping_output_code, verify_host_list):
         Connectivity.__init__(self, id, description, "Mix")

@@ -4,7 +4,7 @@ import os
 import subprocess
 
 
-class Architecture(test):
+class Architecture(AurorTest):
 
     def __init__(self, id, description, type, define_architecture):
         Architecture.__init__(self, id, description, "Software")
