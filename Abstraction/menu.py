@@ -23,3 +23,4 @@ while True:
     elif optionMenu == 2:
         print("You are gonna to personalize your own test")
         optionMenu2 = input("Please, select the configure parameters >>")
+        if optionMenu2 ==
