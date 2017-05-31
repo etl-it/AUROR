@@ -17,7 +17,7 @@ if path.exists('my_auror.conf') is False:
         with open('my_auror.conf', 'wb' ) as archivo:
             cparser.write(archivo) #Se escribe el archivo de configuracion
     else:
-        ext() #Finzalizo la aplicacion si el usuario eligio no configurar nada
+        exit() #Finzalizo la aplicacion si el usuario eligio no configurar nada
 
 print('Auror begin testing')
 
