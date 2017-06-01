@@ -6,12 +6,11 @@ import getopt
 from ConfigParser import RawConfigParser
 
 #Funciones propias
-import menu
+from menu import menu
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 default_cparser = RawConfigParser()
 default_cparser.read('Auror_default.conf')
-
 
 
 #Imprimir en pantalla el script y sus argumentos y opciones
@@ -60,8 +59,8 @@ def init_opt():
 
 def main():
     print("main")
-    init_opt()
-    menu()
+    print(init_opt())
+    #menu()
 
 if __name__ == '__main__':
     main()

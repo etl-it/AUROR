@@ -30,43 +30,41 @@ def help():
     print " -i input file/s\n"
     print " -o output file\n"
 
-def def_type_variables():
+def init_opt():
     #Definir el tipo de las variables que guardaran las opciones
     INP_input = []
     INP_output = ''
     #Asignar a cada argumento una de las anteriores variables
-    options = {'h': 'help'} ###AQUI TE QUEDAS LORENA 
+    options = {'h': 'help', 'help': 'help', 'i': 'INP_input', 'input': 'INP_input', 'o': 'INP_output', 'output': 'INP_output'}
+    arg_var = str()
+    #Leer los argumentos y opciones
+    for _argv in sys.argv[1:] :
+      # Leer los argumentos que comienzan con guion
+      if re.match("^-", _argv) :
+           for _opt,_var in options.iteritems() :
+                if re.compile("^-%s$" % (_opt)).match(_argv) :
+                     argv_var = copy.deepcopy(_var)
+                     if type(vars()[argv_var]) is FunctionType :
+                          vars()[argv_var]()
+                     break
+      # Anotar las opciones de cada argumento
+      else :
+           if argv_var is not None :
+                if type(vars()[argv_var]) is ListType :
+                     vars()[argv_var].append(_argv)
+                else:
+                     vars()[argv_var] += _argv
+     # Imprimir en pantalla todo lo anotado
+     print "Script:",sys.argv[0],"\n"
+     print "Argumentos y opciones:\n",
+     for _opt,_var in options.iteritems() :
+          if vars()[_var] is not None and type(vars()[_var]) is not FunctionType:
+               #print _opt,pprint(type(vars()[_var]))
+               if type(vars()[_var]) is ListType:
+                    print " -"+_opt+": "+str(", ".join(vars()[_var]))
+               else :
+                    print " -"+_opt+": "+str(vars()[_var])
 
-def init_opt():
-    #Definir los parametros obligatorios (:) y opcionales, en su forma abreviada y reducida
-    try:
-        options, args = getopt.getopt(sys.argv[1:], "hi:o:", ["help", "input", "output"])
-    except getopt.GetoptError as err:
-        #Imprimir ayuda y salir si hay algun error o argumento incorrecto
-        print str(err)
-        help()
-        sys.exit(2)
-    output = None
-    verbose = False
-
-
-
-    #Asignar las opciones a cada argumento
-    for _opt, _arg in options:
-        if _opt in ("-i", "--input"):
-            INP_input = _arg
-        elif _opt in ("-o", "--output"):
-            INP_output = _arg
-        elif _opt in ("-h", "--help"):
-            help()
-            sys.exit()
-        else:
-            assert False, "unhandled option"
-
-    #Imprimir en pantalla todo lo anotado
-    print "Argumentos y opciones: \n",
-    for _opt,_arg in options :
-        print " -"+_opt+": "+_arg
 
 def main():
     print("main")
