@@ -58,9 +58,26 @@ def init_opt():
         print " -"+_opt+": "+_arg
 
 def main():
+    #Clean the screen and show the menu once more
+    os.system('clear')
     print("main")
-    print(init_opt())
-    #menu()
+
+    init_opt()
+
+    while True:
+        menu()
+        #Ask for an option to the user
+        optionMenu = input("Insert an option: >> ")
+
+        if optionMenu == 1:
+                print("Auror will operate in default mode. You dont have to configure any other parameter")
+                break
+        elif optionMenu == 2:
+            print("You are gonna to personalize your own test")
+            optionMenu2 = input("Please, select the configure parameters >>")
+
+
+
 
 if __name__ == '__main__':
     main()
