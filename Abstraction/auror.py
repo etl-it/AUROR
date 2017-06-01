@@ -16,6 +16,19 @@ default_cparser.read('Auror_default.conf')
 #Imprimir en pantalla el script y sus argumentos y opciones
 print 'ARGV:', " ".join(sys.argv[0:]), "\n"
 
+def usage():
+    print("AUROR AUDIT SYSTEM")
+    print """
+    \t \t \t pyhton auror.py [-i] [-o] [-h]\n
+    [-i] [my_auror.conf] => Seleccionar un fichero de configuracion
+                            si queremos uno distinto al que existe
+                            por defecto
+
+          Si queremos cargar el fichero de configuracion
+          por defecto seleccionar [auror_default.conf]
+
+    """
+
 #Informacion de ayuda
 def help():
     """Ayuda sobre opciones en linea de comandos """
@@ -44,6 +57,8 @@ def init_opt():
     for _opt, _arg in options:
         if _opt in ("-i", "--input"):
             INP_input = _arg
+            if _arg == 'auror_default.conf':
+                print("default mode")
         elif _opt in ("-o", "--output"):
             INP_output = _arg
         elif _opt in ("-h", "--help"):
@@ -61,6 +76,7 @@ def main():
     #Clean the screen and show the menu once more
     os.system('clear')
     print("main")
+    usage()
 
     init_opt()
 
@@ -74,7 +90,14 @@ def main():
                 break
         elif optionMenu == 2:
             print("You are gonna to personalize your own test")
+            possible_tests()
             optionMenu2 = input("Please, select the configure parameters >>")
+
+            if optionMenu2 == "c":
+                #Crear un objeto AurorTest
+                #Hacer test de conectividad
+                
+
 
 
 
