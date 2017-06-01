@@ -1,2 +1,0 @@
-class kernel(software):
-    pass

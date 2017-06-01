@@ -212,7 +212,6 @@ def compare(file1,file2):
     line2.close()
     outfile.close()
 
-
 def usage():
     print "\nThis is..."
 
