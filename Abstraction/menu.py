@@ -5,8 +5,9 @@ def menu():
 
     print('Select an option:')
     print("\t1 - DEFAULT")
-    print("\t2 - PERSONALIZE TEST")
-    print("\t3 - Goodbye AUROR")
+    print("\t2 - BASIC MODE : Un unico test a la vez")
+    print("\t3 - ADVANCED MODE : Ejecuta varios tests a la vez tras la previa selecceccion de una lista de tests disponibles")
+    print("\t4 - Goodbye AUROR")
 
 def possible_tests():
     print """

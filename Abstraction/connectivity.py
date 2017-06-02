@@ -23,5 +23,11 @@ class Connectivity(AurorTest):
 
         for hostname in host_list:
             return_output_codes[hostname] = self.ping_output_code(hostname)
+            print hostname
+            print """\t"""
+            if return_output_codes == 0:
+                print("OK")
+            else:
+                print("ERROR")
 
         return return_output_codes

@@ -94,7 +94,7 @@ def main():
                 print("Auror will operate in default mode. You dont have to configure any other parameter")
                 break
         elif optionMenu == 2:
-            print("You are gonna to personalize your own test")
+            print("BASIC MODE")
             possible_tests()
             optionMenu2 = input("Please, select the configure parameters >>")
 
@@ -107,6 +107,7 @@ def main():
                                 ]
                 print """\n"""
                 print myAuror.verify_host_list(host_to_test)
+                myAuror.verify_host_list(host_to_test)
                 print """\n"""
             elif optionMenu2 == 1:
                 myAuror2 = Architecture(2, "Arquitectura", "SOFTWARE")
@@ -118,13 +119,8 @@ def main():
                 print """\n"""
                 myAuror3.catch_lspci()
                 print """\n"""
-
             else:
                 sys.exit()
-
-
-
-
 
 if __name__ == '__main__':
     main()
