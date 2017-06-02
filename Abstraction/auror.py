@@ -11,6 +11,7 @@ from menu import possible_tests
 from connectivity import Connectivity
 from AurorTest import AurorTest
 from architecture import Architecture
+from devices import Devices
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 default_cparser = RawConfigParser()
@@ -98,7 +99,7 @@ def main():
             optionMenu2 = input("Please, select the configure parameters >>")
 
             if optionMenu2 == 0:
-                myAuror = Connectivity(1,"ping",2)
+                myAuror = Connectivity(1,"ping","MIX")
 
                 host_to_test = ['google.com',
                                 '163.117.144.243', ##alcazar01.lab.it.uc3m.es
@@ -108,10 +109,16 @@ def main():
                 print myAuror.verify_host_list(host_to_test)
                 print """\n"""
             elif optionMenu2 == 1:
-                myAuror2 = Architecture(2, "Arquitectura", 1)
+                myAuror2 = Architecture(2, "Arquitectura", "SOFTWARE")
                 print """\n"""
                 print myAuror2.define_architecture()
                 print """\n"""
+            elif optionMenu2 == 3:
+                myAuror3 = Devices(3, "LSPCI", "HARDWARE")
+                print """\n"""
+                myAuror3.catch_lspci()
+                print """\n"""
+
             else:
                 sys.exit()
 
