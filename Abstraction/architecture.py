@@ -3,6 +3,7 @@
 import os
 import subprocess
 
+from AurorTest import AurorTest
 
 class Architecture(AurorTest):
 

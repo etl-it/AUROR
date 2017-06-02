@@ -7,6 +7,10 @@ from ConfigParser import RawConfigParser
 
 #Funciones propias
 from menu import menu
+from menu import possible_tests
+from connectivity import Connectivity
+from AurorTest import AurorTest
+from architecture import Architecture
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 default_cparser = RawConfigParser()
@@ -93,10 +97,13 @@ def main():
             possible_tests()
             optionMenu2 = input("Please, select the configure parameters >>")
 
-            if optionMenu2 == "c":
-                #Crear un objeto AurorTest
-                #Hacer test de conectividad
-                
+            if optionMenu2 == 0:
+                myAuror = Connectivity(1,"ping",2)
+                host_to_test = ['google.com',
+                                '163.117.144.243', ##alcazar01.lab.it.uc3m.es
+                                '163.117.168.105'
+                                ]
+                print myAuror.verify_host_list(host_to_test)
 
 
 
