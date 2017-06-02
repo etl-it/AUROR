@@ -7,11 +7,11 @@ from AurorTest import AurorTest
 
 class Architecture(AurorTest):
 
-    def __init__(self, id, description, type, define_architecture):
-        Architecture.__init__(self, id, description, "Software")
+    def __init__(self, id, description, type):
+        AurorTest.__init__(self, id, description)
+        self.__type = type
 
-
-    def define_architecture():
+    def define_architecture(self):
         process = subprocess.Popen(['uname', '-m'],
 
                                     stdout = subprocess.PIPE,

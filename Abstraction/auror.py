@@ -99,11 +99,21 @@ def main():
 
             if optionMenu2 == 0:
                 myAuror = Connectivity(1,"ping",2)
+
                 host_to_test = ['google.com',
                                 '163.117.144.243', ##alcazar01.lab.it.uc3m.es
                                 '163.117.168.105'
                                 ]
+                print """\n"""
                 print myAuror.verify_host_list(host_to_test)
+                print """\n"""
+            elif optionMenu2 == 1:
+                myAuror2 = Architecture(2, "Arquitectura", 1)
+                print """\n"""
+                print myAuror2.define_architecture()
+                print """\n"""
+            else:
+                sys.exit()
 
 
 
