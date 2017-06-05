@@ -5,6 +5,9 @@ import sys, os, re, copy
 import getopt
 #from ConfigParser import RawConfigParser
 import configparser
+from ConfigParser import RawConfigParser
+from os import path
+
 
 #Funciones propias
 from menu import menu
@@ -16,7 +19,6 @@ from devices import Devices
 
 
 test_to_do = []
-config_file = 'Auror_default.conf' #Fihero de config por defecto
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 #default_cparser = RawConfigParser()
@@ -53,27 +55,37 @@ def help():
     print " -i input file/s\n"
     print " -o output file\n"
 
-def select_config(option_config):
-    config = configparser.ConfigParser()
-    if option_config == 1:
-        config.read('Auror_default.conf')
-        for key in config['tests_to_do']:
-            tests_to_do.append(key)
-    elif option_config == 2:
-        config.read(config_file)
-        configure_user_mode()
+def config(config_file):
+    #Si el archivo de configuracion no existe
+    if path.exists(config_file) is False:
+        #Pregunto si lo quiere crear
+        print('La aplicación aún no se ha configurado correctamente')
+        continuar = raw_input('¿Desea configurarla ahora? (y/n) ')
+        #Creo el archivo de configuracion
+        if continuar.lower() == 'y' :
+            cparser = RawConfigParser() #Se crea el objeto ConfigParser
+            with open(config_file, 'wb') as archivo:
+                configuration_file_style() #Se muestra al usario la fomra que debe tener el fihchero de configuracion
+                cparser.write(archivo) #Se escribe el archivo de configuracion
+        else:
+            exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
 
-def configure_user_mode():
 
 
-
-
+def select_tests(config_file):
+    cparser = RawConfigParser()
+    cparser.read(config_file)
+    for key in cparser['test_to_do']:
+        test_to_do.append(key)
 
 def move_to_done(test):
 
 def report:
 
 def init_opt():
+
+    config_file = 'Auror_default.conf' #Fihero de config por defecto
+
     #Definir los parametros obligatorios (:) y opcionales, en su forma abreviada y reducida
     try:
         options, args = getopt.getopt(sys.argv[1:], "hi:o:", ["help", "input", "output"])
@@ -88,18 +100,13 @@ def init_opt():
     #Definir el tipo de las variables que guardaran las opciones
     INP_input = ''
     INP_output = ''
-    option_config = 1 #Variable para saber si usaremos el fichero de configuracion por defecto
-                       #u otro qye nos ha inddicado el usuario
-                       #1 => POR DEFECTO
 
     #Asignar las opciones a cada argumento
     for _opt, _arg in options:
         if _opt in ("-i", "--input"):
             INP_input = _arg
-            if _arg != 'auror_default.conf':
-                option_config = 2 #el ficheor de configuracion es el que nos indica el usuario
-                config_file = _arg
-            select_config(option_config)
+            config_file = _arg
+            config(config_file)
         elif _opt in ("-o", "--output"):
             INP_output = _arg
         elif _opt in ("-h", "--help"):
