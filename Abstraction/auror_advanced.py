@@ -98,9 +98,12 @@ def config(config_file):
 
                 number_of_tests = raw_input('Introduzca el numero de test que quiere llevar a cabo: >> ')
 
-                for test in number_of_tests:
+                for test in [int(number_of_tests)]:
                     available_tests()
+                    print(number_of_tests)
+                    print([int(number_of_tests)])
                     test = raw_input('Introduzca el identificador del test que quiere realizar: >>')
+
                     if test == 1:
                         cparser.set('TESTS', 'Test1', 'Connectivity')
                     elif test == 2:
@@ -177,11 +180,6 @@ def main():
     usage()
 
     init_opt()
-
-    #while True:
-
-
-
 
 if __name__ == '__main__':
     main()
