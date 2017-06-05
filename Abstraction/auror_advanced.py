@@ -45,14 +45,14 @@ def usage():
 def configuration_file_style():
     print("AUROR CONFIGURATION FILE STYLE")
     print """
-        [DEFAULT]
-        SeverityLevel = 'L/M/H' [LOW/MEDIUM/HIGH]
+        [BASIC]
+        SeverityLevel = 'l/m/h' [LOW/MEDIUM/HIGH]
         Report = 'y/n' [YES/NO]
 
         [TESTS]
-        test1 = ...
-        test2 = ...
-        test3 = ...
+        Test1 = ...
+        Test2 = ...
+        Test3 = ...
         .
         .
         .
@@ -79,16 +79,39 @@ def config(config_file):
             with open(config_file, 'wb') as archivo:
                 configuration_file_style() #Se muestra al usario la fomra que debe tener el fihchero de configuracion
 
-                number_of_tests = input("Introduzca el numero de test que quiere llevar a cabo: >> ")
+                severity = input('Seleccione el grado de profundidad de los tests: >> ')
+                    if severity.lower() == 'l':
+                        cparser['BASIC']['SeverityLevel'] = 'LOW'
+                    elif severity.lower() == 'm':
+                        cparser['BASIC']['SeverityLevel'] = 'MEDIUM'
+                    elif severity.lower() == 'h':
+                        cparser['BASIC']['SeverityLevel'] = 'HIGH'
+
+                report = input("Desea guardar un informe? >> ")
+
+                number_of_tests = input('Introduzca el numero de test que quiere llevar a cabo: >> ')
 
                 for test in number_of_tests:
-                    print('hola')
+                    available_tests()
+                    test = input('Introduzca el identificador del test que quiere realizar: >>')
+                    if test == 1:
+                        cparser['TESTS']['Test1'] = 'Connectivity'
+                    elif test == 2:
+                        cparser['TESTS']['Test2'] = 'Architecture'
 
                 cparser.write(archivo) #Se escribe el archivo de configuracion
         else:
             exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
 
-
+def available_tests():
+    print """
+        1 => Connectivity
+        2 => Architecture
+        3 =>
+        .
+        .
+        .
+    """
 
 def select_tests(config_file):
     cparser = RawConfigParser()
