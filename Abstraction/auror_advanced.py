@@ -3,7 +3,8 @@
 #Fuciones de Python
 import sys, os, re, copy
 import getopt
-from ConfigParser import RawConfigParser
+#from ConfigParser import RawConfigParser
+import configparser
 
 #Funciones propias
 from menu import menu
@@ -13,10 +14,12 @@ from AurorTest import AurorTest
 from architecture import Architecture
 from devices import Devices
 
-#CARGAR FICHERO DE CONFIGURACION POR DEFECTO
-default_cparser = RawConfigParser()
-default_cparser.read('Auror_default.conf')
 
+test_to_do = []
+config_file = 'Auror_default.conf' #Fihero de config por defecto
+
+#CARGAR FICHERO DE CONFIGURACION POR DEFECTO
+#default_cparser = RawConfigParser()
 
 #Imprimir en pantalla el script y sus argumentos y opciones
 print 'ARGV:', " ".join(sys.argv[0:]), "\n"
@@ -29,9 +32,17 @@ def usage():
                             si queremos uno distinto al que existe
                             por defecto
 
+                            Debera tener la forma : [nombreQueDesee.conf]
+
           Si queremos cargar el fichero de configuracion
           por defecto seleccionar [auror_default.conf]
+    [-o]                  => Fichero de salida
+    [-h]                  => AYUDA
+    """
 
+def configuration_file_style():
+    print("AUROR CONFIGURATION FILE STYLE")
+    print """
     """
 
 #Informacion de ayuda
@@ -41,6 +52,26 @@ def help():
     print " -h this message\n"
     print " -i input file/s\n"
     print " -o output file\n"
+
+def select_config(option_config):
+    config = configparser.ConfigParser()
+    if option_config == 1:
+        config.read('Auror_default.conf')
+        for key in config['tests_to_do']:
+            tests_to_do.append(key)
+    elif option_config == 2:
+        config.read(config_file)
+        configure_user_mode()
+
+def configure_user_mode():
+
+
+
+
+
+def move_to_done(test):
+
+def report:
 
 def init_opt():
     #Definir los parametros obligatorios (:) y opcionales, en su forma abreviada y reducida
@@ -57,13 +88,18 @@ def init_opt():
     #Definir el tipo de las variables que guardaran las opciones
     INP_input = ''
     INP_output = ''
+    option_config = 1 #Variable para saber si usaremos el fichero de configuracion por defecto
+                       #u otro qye nos ha inddicado el usuario
+                       #1 => POR DEFECTO
 
     #Asignar las opciones a cada argumento
     for _opt, _arg in options:
         if _opt in ("-i", "--input"):
             INP_input = _arg
-            if _arg == 'auror_default.conf':
-                print("default mode")
+            if _arg != 'auror_default.conf':
+                option_config = 2 #el ficheor de configuracion es el que nos indica el usuario
+                config_file = _arg
+            select_config(option_config)
         elif _opt in ("-o", "--output"):
             INP_output = _arg
         elif _opt in ("-h", "--help"):
