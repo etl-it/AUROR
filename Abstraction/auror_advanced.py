@@ -46,7 +46,7 @@ def configuration_file_style():
     print("AUROR CONFIGURATION FILE STYLE")
     print """
         [BASIC]
-        SeverityLevel = 'l/m/h' [LOW/MEDIUM/HIGH]
+        SeverityLevel = '1/2/3' [LOW/MEDIUM/HIGH]
         Report = 'y/n' [YES/NO]
 
         [TESTS]
@@ -79,26 +79,31 @@ def config(config_file):
             with open(config_file, 'wb') as archivo:
                 configuration_file_style() #Se muestra al usario la fomra que debe tener el fihchero de configuracion
 
-                severity = input('Seleccione el grado de profundidad de los tests: >> ')
-                    if severity.lower() == 'l':
-                        cparser['BASIC']['SeverityLevel'] = 'LOW'
-                    elif severity.lower() == 'm':
-                        cparser['BASIC']['SeverityLevel'] = 'MEDIUM'
-                    elif severity.lower() == 'h':
-                        cparser['BASIC']['SeverityLevel'] = 'HIGH'
+                severity = raw_input('Seleccione el grado de profundidad de los tests: >> ')
+                if severity.lower() == 'h':
+                    cparser['BASIC']['SeverityLevel'] = 'LOW'
+                elif severity == 2:
+                    cparser['BASIC']['SeverityLevel'] = 'MEDIUM'
+                elif severity == 3:
+                    cparser['BASIC']['SeverityLevel'] = 'HIGH'
 
-                report = input("Desea guardar un informe? >> ")
 
-                number_of_tests = input('Introduzca el numero de test que quiere llevar a cabo: >> ')
+                report = raw_input("Desea guardar un informe? >> ")
+                if report.lower() == 'y':
+                    cparser['BASIC']['Report'] = 'YES'
+                elif report.lower() == 'n':
+                    cparser['BASIC']['Report'] = 'NO'
+
+                number_of_tests = raw_input('Introduzca el numero de test que quiere llevar a cabo: >> ')
 
                 for test in number_of_tests:
                     available_tests()
-                    test = input('Introduzca el identificador del test que quiere realizar: >>')
+                    test = raw_input('Introduzca el identificador del test que quiere realizar: >>')
                     if test == 1:
                         cparser['TESTS']['Test1'] = 'Connectivity'
                     elif test == 2:
                         cparser['TESTS']['Test2'] = 'Architecture'
-
+                
                 cparser.write(archivo) #Se escribe el archivo de configuracion
         else:
             exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
@@ -116,7 +121,7 @@ def available_tests():
 def select_tests(config_file):
     cparser = RawConfigParser()
     cparser.read(config_file)
-    for key in cparser['test_to_do']:
+    for key in cparser['TESTS']:
         test_to_do.append(key)
 
 def move_to_done(test):
