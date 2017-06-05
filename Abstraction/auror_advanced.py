@@ -3,8 +3,7 @@
 #Fuciones de Python
 import sys, os, re, copy
 import getopt
-#from ConfigParser import RawConfigParser
-import configparser
+
 from ConfigParser import RawConfigParser
 from os import path
 
@@ -19,6 +18,7 @@ from devices import Devices
 
 
 test_to_do = []
+done_tests = []
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 #default_cparser = RawConfigParser()
@@ -45,6 +45,18 @@ def usage():
 def configuration_file_style():
     print("AUROR CONFIGURATION FILE STYLE")
     print """
+        [DEFAULT]
+        SeverityLevel = 'L/M/H' [LOW/MEDIUM/HIGH]
+        Report = 'y/n' [YES/NO]
+
+        [TESTS]
+        test1 = ...
+        test2 = ...
+        test3 = ...
+        .
+        .
+        .
+
     """
 
 #Informacion de ayuda
@@ -59,13 +71,19 @@ def config(config_file):
     #Si el archivo de configuracion no existe
     if path.exists(config_file) is False:
         #Pregunto si lo quiere crear
-        print('La aplicación aún no se ha configurado correctamente')
-        continuar = raw_input('¿Desea configurarla ahora? (y/n) ')
+        print('La aplicacion aun no se ha configurado correctamente')
+        continuar = raw_input('Desea configurarla ahora? (y/n) ')
         #Creo el archivo de configuracion
         if continuar.lower() == 'y' :
             cparser = RawConfigParser() #Se crea el objeto ConfigParser
             with open(config_file, 'wb') as archivo:
                 configuration_file_style() #Se muestra al usario la fomra que debe tener el fihchero de configuracion
+
+                number_of_tests = input("Introduzca el numero de test que quiere llevar a cabo: >> ")
+
+                for test in number_of_tests:
+                    print('hola')
+
                 cparser.write(archivo) #Se escribe el archivo de configuracion
         else:
             exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
@@ -79,8 +97,10 @@ def select_tests(config_file):
         test_to_do.append(key)
 
 def move_to_done(test):
+    test_to_do.remove(test)
+    done_tests.append(test)
 
-def report:
+#def report:
 
 def init_opt():
 
@@ -128,42 +148,10 @@ def main():
 
     init_opt()
 
-    while True:
-        menu()
-        #Ask for an option to the user
-        optionMenu = input("Insert an option: >> ")
+    #while True:
 
-        if optionMenu == 1:
-                print("Auror will operate in default mode. You dont have to configure any other parameter")
-                break
-        elif optionMenu == 2:
-            print("BASIC MODE")
-            possible_tests()
-            optionMenu2 = input("Please, select the configure parameters >>")
 
-            if optionMenu2 == 0:
-                myAuror = Connectivity(1,"ping","MIX")
 
-                host_to_test = ['google.com',
-                                '163.117.144.243', ##alcazar01.lab.it.uc3m.es
-                                '163.117.168.105'
-                                ]
-                print """\n"""
-                print myAuror.verify_host_list(host_to_test)
-                myAuror.verify_host_list(host_to_test)
-                print """\n"""
-            elif optionMenu2 == 1:
-                myAuror2 = Architecture(2, "Arquitectura", "SOFTWARE")
-                print """\n"""
-                print myAuror2.define_architecture()
-                print """\n"""
-            elif optionMenu2 == 3:
-                myAuror3 = Devices(3, "LSPCI", "HARDWARE")
-                print """\n"""
-                myAuror3.catch_lspci()
-                print """\n"""
-            else:
-                sys.exit()
 
 if __name__ == '__main__':
     main()
