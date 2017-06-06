@@ -98,16 +98,16 @@ def config(config_file):
 
                 number_of_tests = raw_input('Introduzca el numero de test que quiere llevar a cabo: >> ')
 
-                for test in [int(number_of_tests)]:
-                    available_tests()
-                    print(number_of_tests)
-                    print([int(number_of_tests)])
-                    test = raw_input('Introduzca el identificador del test que quiere realizar: >>')
+                range_number_of_tests = range(int(number_of_tests))
 
-                    if test == 1:
+                for test in range_number_of_tests:
+                    available_tests()
+
+                    test = raw_input('Introduzca el identificador del test que quiere realizar: >>')
+                    if int(test) == 1:
                         cparser.set('TESTS', 'Test1', 'Connectivity')
-                    elif test == 2:
-                        cparser.set('TESTS', 'Test1', 'Architecture')
+                    elif int(test) == 2:
+                        cparser.set('TESTS', 'Test2', 'Architecture')
 
                 cparser.write(archivo) #Se escribe el archivo de configuracion
         else:
