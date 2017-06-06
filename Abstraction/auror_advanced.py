@@ -121,18 +121,16 @@ def available_tests():
         .
     """
 
-def select_tests(config_file):
+def select_tests(config_file,test_to_do):
     cparser = RawConfigParser()
     cparser.read(config_file)
 
-    sections = cparser.sections()
+    all_tests = cparser.options('TESTS')
 
-    #for s in all_tests:
-    #    print(test)
-        #test_to_do.append(key)
-    return sections
+    for test in all_tests:
+        test_to_do.append(test)
 
-def move_to_done(test):
+def move_to_done(test,test_to_do,done_tests):
     test_to_do.remove(test)
     done_tests.append(test)
 
@@ -143,8 +141,8 @@ def init_opt():
     #Definir los parametros obligatorios (:) y opcionales, en su forma abreviada y reducida
     try:
         options, args = getopt.getopt(sys.argv[1:], "hi:o:", ["help", "input", "output"])
-    except getopt.GetoptError as err:
         #Imprimir ayuda y salir si hay algun error o argumento incorrecto
+    except getopt.GetoptError as err:
         print str(err)
         help()
         sys.exit(2)
@@ -188,13 +186,11 @@ def main():
 
     config(config_file)
 
-    options = select_tests(config_file)
+    options = select_tests(config_file,test_to_do)
 
-    for option in options:
-        print(options)
 
-    # for test in test_to_do:
-    #     print(test)
+    for test in test_to_do:
+       print(test)
 
 
 
