@@ -17,9 +17,6 @@ from architecture import Architecture
 from devices import Devices
 
 
-test_to_do = []
-done_tests = []
-
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 #default_cparser = RawConfigParser()
 
@@ -113,6 +110,7 @@ def config(config_file):
         else:
             exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
 
+
 def available_tests():
     print """
         1 => Connectivity
@@ -126,8 +124,13 @@ def available_tests():
 def select_tests(config_file):
     cparser = RawConfigParser()
     cparser.read(config_file)
-    for key in cparser['TESTS']:
-        test_to_do.append(key)
+
+    sections = cparser.sections()
+
+    #for s in all_tests:
+    #    print(test)
+        #test_to_do.append(key)
+    return sections
 
 def move_to_done(test):
     test_to_do.remove(test)
@@ -136,9 +139,7 @@ def move_to_done(test):
 #def report:
 
 def init_opt():
-
-    config_file = 'Auror_default.conf' #Fihero de config por defecto
-
+    config_file = ' ' #Fihero de config por defecto
     #Definir los parametros obligatorios (:) y opcionales, en su forma abreviada y reducida
     try:
         options, args = getopt.getopt(sys.argv[1:], "hi:o:", ["help", "input", "output"])
@@ -159,7 +160,6 @@ def init_opt():
         if _opt in ("-i", "--input"):
             INP_input = _arg
             config_file = _arg
-            config(config_file)
         elif _opt in ("-o", "--output"):
             INP_output = _arg
         elif _opt in ("-h", "--help"):
@@ -172,14 +172,31 @@ def init_opt():
     print "Argumentos y opciones: \n",
     for _opt,_arg in options :
         print " -"+_opt+": "+_arg
+    return config_file
 
 def main():
     #Clean the screen and show the menu once more
     os.system('clear')
-    print("main")
+
+
+    test_to_do = []
+    done_tests = []
+
     usage()
 
-    init_opt()
+    config_file = init_opt()
+
+    config(config_file)
+
+    options = select_tests(config_file)
+
+    for option in options:
+        print(options)
+
+    # for test in test_to_do:
+    #     print(test)
+
+
 
 if __name__ == '__main__':
     main()
