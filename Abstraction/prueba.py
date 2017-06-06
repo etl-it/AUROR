@@ -1,7 +1,8 @@
 
 #import connectivity
-import catcher
+from catcher import *
 import os
+import subprocess
 
 
 def main():
@@ -16,7 +17,8 @@ def main():
 
     mix_catcher = MixCatcherFactory()
     auror = mix_catcher.getMixCatcher("Connectivity")
-    print(auror.catch(host_to_test))
+    #auror.catch(host_to_test)
+    auror.verify_host_list(host_to_test)
 
 
 

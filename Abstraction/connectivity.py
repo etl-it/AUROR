@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-import catcher
+from catcher import *
 
 class Connectivity(MixCatcher):
     def __init__(self):
@@ -30,5 +30,5 @@ class Connectivity(MixCatcher):
 
         return return_output_codes
 
-        def catch(self,params): #params = host_list
-                verify_host_list(params)
+    def catch(self,params): #params = host_list
+        verify_host_list(params)

@@ -1,4 +1,6 @@
 #import connectivity
+import subprocess
+import os
 
 class Catcher:
     __type = ""
@@ -26,7 +28,7 @@ class SoftwareCather(Catcher):
 
 class MixCatcher(Catcher):
     def __init__(self, name):
-        Cather.__init__(self, "Mix", name)
+        Catcher.__init__(self, "Mix", name)
     def catch(self,params): pass
 
 ######
@@ -62,17 +64,14 @@ class Connectivity(MixCatcher):
 
         return return_output_codes
 
-        def catch(self,params): #params = host_list
-                verify_host_list(params)
+    def catch(self,params):
+        try:
+            verify_host_list(params)
+            return "pass"
+        except:
+            return "fail"
 
 
-
-# class Connectivity(MixCatcher):
-#     def __init__(self):
-#         MixCatcher.__init__(self, "Connectivity")
-
-
-#Abstract factory class
 class CatcherFactory:
     def getSoftwareCatcher(self, name): pass
     def getHardwareCatcher(self, name): pass
