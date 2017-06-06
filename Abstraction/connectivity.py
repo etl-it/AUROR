@@ -1,13 +1,11 @@
 import os
 import subprocess
 
-from AurorTest import AurorTest
+import catcher
 
-class Connectivity(AurorTest):
-
-    def __init__ (self, id, description, type):
-        AurorTest.__init__(self, id, description)
-        self.__type = type
+class Connectivity(MixCatcher):
+    def __init__(self):
+        MixCatcher.__init__(self, "Connectivity")
 
 
     def ping_output_code(self, hostname):
@@ -31,3 +29,6 @@ class Connectivity(AurorTest):
                 print("ERROR")
 
         return return_output_codes
+
+        def catch(self,params): #params = host_list
+                verify_host_list(params)
