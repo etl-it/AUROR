@@ -33,13 +33,10 @@ class Architecture(SoftwareCather):
 
     #Metodo para generalizacion con factoria
     def catch(self):
-        #try:
 
-        return self.define_architecture()
+        info = self.define_architecture()
+        print(info)
 
-        # except:
-        #     print """ERROR"""
-        #     sys.exit(2)
 
 def main():
     software_catcher = SoftwareCatcherFactory()

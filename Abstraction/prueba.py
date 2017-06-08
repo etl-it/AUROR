@@ -22,9 +22,9 @@ def main():
 
     software_catcher = SoftwareCatcherFactory()
     auror_soft = software_catcher.getSoftwareCatcher("Architecture")
-    print(auror_soft.define_architecture())
+    #print(auror_soft.define_architecture())
     #print(auror_soft.catch())
-
+    #auror_soft.catch()
 
 if __name__ == '__main__':
     main()

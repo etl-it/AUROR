@@ -24,7 +24,7 @@ class HardwareCather(Catcher):
 class SoftwareCather(Catcher):
     def __init__(self,name):
         Catcher.__init__(self, "Software", name)
-    def catch(self): pass #ESTO HAY QUE CAMBIARLO
+    def catch(self,params): pass #ESTO HAY QUE CAMBIARLO
 
 class MixCatcher(Catcher):
     def __init__(self, name):
@@ -57,14 +57,16 @@ class Connectivity(MixCatcher):
 
         for hostname in host_list:
             return_output_codes[hostname] = self.ping_output_code(hostname)
-            print hostname
-            print """\t"""
+            print """-----------------------------------"""
+            #print("HOSTNAME: {hostname} => ")
             if return_output_codes[hostname] == 0:
-                print("OK")
-                print """\t"""
+                print("HOSTNAME: " + hostname + " => OK ")
+                #print("OK |")
+                print """-----------------------------------"""
             else:
-                print("ERROR")
-                print """\t"""
+                print("HOSTNAME: " ,hostname, " => ERROR ")
+                #print("ERROR |")
+                print """-----------------------------------"""
 
     #Metodo para generalizacion con factoria
     def catch(self,params): #params = host_list
