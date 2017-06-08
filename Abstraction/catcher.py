@@ -58,14 +58,11 @@ class Connectivity(MixCatcher):
         for hostname in host_list:
             return_output_codes[hostname] = self.ping_output_code(hostname)
             print """-----------------------------------"""
-            #print("HOSTNAME: {hostname} => ")
             if return_output_codes[hostname] == 0:
                 print("HOSTNAME: " + hostname + " => OK ")
-                #print("OK |")
                 print """-----------------------------------"""
             else:
                 print("HOSTNAME: " ,hostname, " => ERROR ")
-                #print("ERROR |")
                 print """-----------------------------------"""
 
     #Metodo para generalizacion con factoria
@@ -107,7 +104,7 @@ class Architecture(SoftwareCather):
     #Metodo para generalizacion con factoria
     def catch(self):
         try:
-            self.define_architecture()
+            print(self.define_architecture())
         except:
             print """ERROR"""
             sys.exit(2)

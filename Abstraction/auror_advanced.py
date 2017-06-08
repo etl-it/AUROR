@@ -233,7 +233,6 @@ def main():
     aurors = []
 
     for test_name in test_to_do:
-        print(sort(test_name))
         if sort(test_name) == "MIX":
             auror_mix = mix_catcher.getMixCatcher(test_name)
             aurors.append(auror_mix)
@@ -244,7 +243,7 @@ def main():
             auror_hard = hardaware_catcher.getHardwareCatcher(test_name)
             aurors.append(auror_hard)
         else:
-            print("No hay tests para crear aurores")
+            pass
 
     for this_auror in aurors:
         this_auror.catch()

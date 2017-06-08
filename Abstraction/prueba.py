@@ -17,14 +17,14 @@ def main():
 
     mix_catcher = MixCatcherFactory()
     auror_mix = mix_catcher.getMixCatcher("Connectivity")
-    auror_mix.catch(host_to_test)
+    #auror_mix.catch(host_to_test)
 
 
     software_catcher = SoftwareCatcherFactory()
     auror_soft = software_catcher.getSoftwareCatcher("Architecture")
-    print(auror_soft.define_architecture())
-    #print(auror_soft.catch()) NO VCA CON ESTO
-    #auror_soft.catch() NO VA CON ESTO
+    #print(auror_soft.define_architecture())
+
+    auror_soft.catch() 
 
 if __name__ == '__main__':
     main()
