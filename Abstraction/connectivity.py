@@ -20,7 +20,7 @@ class Connectivity(MixCatcher):
         return_output_codes = dict()
 
         for hostname in host_list:
-            return_output_codes[hostname] = ping_output_code(hostname)
+            return_output_codes[hostname] = self.ping_output_code(hostname)
             print hostname
             print """\t"""
             if return_output_codes[hostname] == 0:
@@ -30,7 +30,26 @@ class Connectivity(MixCatcher):
                 print("ERROR")
                 print """\t"""
 
-        return return_output_codes
 
     def catch(self,params): #params = host_list
         verify_host_list(params)
+
+def main():
+    #Clean the screen and show the menu once more
+    #os.system('clear')
+    print("main")
+
+    host_to_test = ['google.com',
+                    '163.117.144.243', ##alcazar01.lab.it.uc3m.es
+                    '163.117.168.105'
+                    ]
+
+    mix_catcher = MixCatcherFactory()
+    auror = mix_catcher.getMixCatcher("Connectivity")
+    #auror.catch(host_to_test)
+    auror.verify_host_list(host_to_test)
+
+
+
+if __name__ == '__main__':
+    main()

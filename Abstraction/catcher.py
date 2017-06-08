@@ -58,12 +58,12 @@ class Connectivity(MixCatcher):
             return_output_codes[hostname] = self.ping_output_code(hostname)
             print hostname
             print """\t"""
-            if return_output_codes == 0:
+            if return_output_codes[hostname] == 0:
                 print("OK")
+                print """\t"""
             else:
                 print("ERROR")
-
-        return return_output_codes
+                print """\t"""
 
     def catch(self,params):
         try:
