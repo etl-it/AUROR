@@ -1,6 +1,7 @@
 #import connectivity
 import subprocess
 import os
+import sys
 
 class Catcher:
     __type = ""
@@ -67,9 +68,9 @@ class Connectivity(MixCatcher):
     def catch(self,params):
         try:
             verify_host_list(params)
-            return "pass"
         except:
-            return "fail"
+            print """ERROR"""
+            sys.exit(2)
 
 
 class CatcherFactory:

@@ -20,13 +20,15 @@ class Connectivity(MixCatcher):
         return_output_codes = dict()
 
         for hostname in host_list:
-            return_output_codes[hostname] = self.ping_output_code(hostname)
+            return_output_codes[hostname] = ping_output_code(hostname)
             print hostname
             print """\t"""
-            if return_output_codes == 0:
+            if return_output_codes[hostname] == 0:
                 print("OK")
+                print """\t"""
             else:
                 print("ERROR")
+                print """\t"""
 
         return return_output_codes
 
