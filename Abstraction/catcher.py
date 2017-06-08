@@ -19,17 +19,17 @@ class Catcher:
 class HardwareCather(Catcher):
     def __init__(self, name):
         Catcher.__init__(self, "Hardware", name)
-    def catch(self,params): pass
+    def catch(self): pass
 
 class SoftwareCather(Catcher):
     def __init__(self,name):
         Catcher.__init__(self, "Software", name)
-    def catch(self,params): pass #ESTO HAY QUE CAMBIARLO
+    def catch(self): pass #ESTO HAY QUE CAMBIARLO
 
 class MixCatcher(Catcher):
     def __init__(self, name):
         Catcher.__init__(self, "Mix", name)
-    def catch(self,params): pass
+    def catch(self): pass
 
 class CatcherFactory:
     def getSoftwareCatcher(self, name): pass
@@ -69,9 +69,13 @@ class Connectivity(MixCatcher):
                 print """-----------------------------------"""
 
     #Metodo para generalizacion con factoria
-    def catch(self,params): #params = host_list
+    def catch(self): #params = host_list
+        host_to_test = ['google.com',
+                        '163.117.144.243', ##alcazar01.lab.it.uc3m.es
+                        '163.117.168.105'
+                        ]
         try:
-            self.verify_host_list(params)
+            self.verify_host_list(host_to_test)
         except:
             print """ERROR"""
             sys.exit(2)

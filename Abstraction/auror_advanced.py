@@ -3,18 +3,14 @@
 #Fuciones de Python
 import sys, os, re, copy
 import getopt
+import subprocess
 
 from ConfigParser import RawConfigParser
 from os import path
 
 
 #Funciones propias
-from menu import menu
-from menu import possible_tests
-from connectivity import Connectivity
-from AurorTest import AurorTest
-from architecture import Architecture
-from devices import Devices
+from catcher import *
 
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
@@ -82,9 +78,9 @@ def config(config_file):
                 severity = raw_input('Seleccione el grado de profundidad de los tests: >> ')
                 if severity.lower() == 'l':
                     cparser.set('BASIC', 'SeverityLevel', 'LOW')
-                elif severity == 'm':
+                elif severity.lower() == 'm':
                     cparser.set('BASIC', 'SeverityLevel', 'MEDIUM')
-                elif severity == 'h':
+                elif severity.lower() == 'h':
                     cparser.set('BASIC', 'SeverityLevel', 'HIGH')
 
                 report = raw_input("Desea guardar un informe? >> ")
@@ -129,15 +125,11 @@ def select_tests(config_file,test_to_do):
 
     options_tests = cparser.options('TESTS')
 
-    print("OPCIONES DE TEST NO NOMBRE " ,options_tests)
-
     all_tests = [] #Lista con los NOMBRES de los tests seleccionados por el usuario
 
     for option_test in options_tests:
         #option_index = options_tests.index(option_test)
         all_tests.append(cparser.get('TESTS',option_test))
-
-    print all_tests
 
     for test in all_tests:
         test_to_do.append(test)
@@ -186,6 +178,33 @@ def init_opt():
         print " -"+_opt+": "+_arg
     return config_file
 
+def sort(test):
+    type = ""
+
+    possible_mix_tests = ["Connectivity"]
+    possible_hardware_tests = ["Este"]
+    possible_software_tests = ["Architecture"]
+
+    for i in possible_mix_tests:
+        i_index = possible_mix_tests.index(i)
+        if test == possible_mix_tests[i_index]:
+            type = "MIX"
+        else:
+            pass
+    for j in possible_hardware_tests:
+        j_index = possible_hardware_tests.index(j)
+        if test == possible_hardware_tests[j_index]:
+            type = "HARDWARE"
+        else:
+            pass
+    for k in possible_software_tests:
+        k_index = possible_software_tests.index(k)
+        if test == possible_hardware_tests[k_index]:
+            type = "SOFTWARE"
+        else:
+            pass
+    return type
+
 def main():
     #Clean the screen and show the menu once more
     os.system('clear')
@@ -204,14 +223,31 @@ def main():
     #Caracterizacio del fichero de configuracion a gusto del usuario
     config(config_file)
 
-
     test_to_do = select_tests(config_file,test_to_do)
 
-    # for test in test_to_do:
-    #     print test
+    #CREACION DE LOS "CATCHER". Por defecto crearemos 3, uno de cada tipo
+    mix_catcher = MixCatcherFactory()
+    software_catcher = SoftwareCatcherFactory()
+    hardaware_catcher = HardwareCatcherFactory()
 
+    aurors = []
 
+    for test_name in test_to_do:
+        print(sort(test_name))
+        if sort(test_name) == "MIX":
+            auror_mix = mix_catcher.getMixCatcher(test_name)
+            aurors.append(auror_mix)
+        elif sort(test_name) == "SOFTWARE":
+            auror_soft = software_catcher.getSoftwareCatcher(test_name)
+            aurors.append(auror_soft)
+        elif sort(test_name) == "HARDAWARE":
+            auror_hard = hardaware_catcher.getHardwareCatcher(test_name)
+            aurors.append(auror_hard)
+        else:
+            print("No hay tests para crear aurores")
 
+    for this_auror in aurors:
+        this_auror.catch()
 
 
 if __name__ == '__main__':
