@@ -34,8 +34,8 @@ def usage():
                             Debera tener la forma : [nombreQueDesee.conf]
 
           Si queremos cargar el fichero de configuracion
-          por defecto seleccionar [auror_default.conf]
-    [-o]                  => Fichero de salida
+          por defecto seleccionar [auror_default.conf]\n
+    [-o]                  => Fichero de salida\n
     [-h]                  => AYUDA
     """
 
@@ -125,10 +125,24 @@ def select_tests(config_file,test_to_do):
     cparser = RawConfigParser()
     cparser.read(config_file)
 
-    all_tests = cparser.options('TESTS')
+    #all_tests = cparser.options('TESTS')
+
+    options_tests = cparser.options('TESTS')
+
+    print("OPCIONES DE TEST NO NOMBRE " ,options_tests)
+
+    all_tests = [] #Lista con los NOMBRES de los tests seleccionados por el usuario
+
+    for option_test in options_tests:
+        #option_index = options_tests.index(option_test)
+        all_tests.append(cparser.get('TESTS',option_test))
+
+    print all_tests
 
     for test in all_tests:
         test_to_do.append(test)
+
+    return test_to_do
 
 def move_to_done(test,test_to_do,done_tests):
     test_to_do.remove(test)
@@ -180,17 +194,23 @@ def main():
     test_to_do = []
     done_tests = []
 
+    #Mostramos por pantalla el modo de uso al usuario
     usage()
 
+    #Seleccionar la opcion inicial del usaurio (help, fichero de cnfiguracion, o fichero de salida)
+    #En el caso de que la opcion sea -i se guardara el fichero de configuracion inicial especificado
     config_file = init_opt()
 
+    #Caracterizacio del fichero de configuracion a gusto del usuario
     config(config_file)
 
-    options = select_tests(config_file,test_to_do)
+
+    test_to_do = select_tests(config_file,test_to_do)
+
+    # for test in test_to_do:
+    #     print test
 
 
-    for test in test_to_do:
-       print(test)
 
 
 
