@@ -2,15 +2,17 @@
 
 import os
 import subprocess
+import sys
 
-from AurorTest import AurorTest
+from catcher import *
 
-class Architecture(AurorTest):
 
-    def __init__(self, id, description, type):
-        AurorTest.__init__(self, id, description)
-        self.__type = type
+class Architecture(SoftwareCather):
+    #"CONSTRUCTOR"
+    def __init__(self):
+        SoftwareCather.__init__(self, "Software")
 
+    #Metodo Propio
     def define_architecture(self):
         process = subprocess.Popen(['uname', '-m'],
 
@@ -28,3 +30,21 @@ class Architecture(AurorTest):
         info = [type, out_value]
 
         return info
+
+    #Metodo para generalizacion con factoria
+    def catch(self):
+        #try:
+
+        return self.define_architecture()
+
+        # except:
+        #     print """ERROR"""
+        #     sys.exit(2)
+
+def main():
+    software_catcher = SoftwareCatcherFactory()
+    auror = software_catcher.getHardwareCatcher("Architecture")
+    auror.catch()
+
+if __name__ == 'main':
+    main()

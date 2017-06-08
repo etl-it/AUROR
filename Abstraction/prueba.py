@@ -16,10 +16,14 @@ def main():
                     ]
 
     mix_catcher = MixCatcherFactory()
-    auror = mix_catcher.getMixCatcher("Connectivity")
-    #auror.catch(host_to_test)
-    auror.verify_host_list(host_to_test)
+    auror_mix = mix_catcher.getMixCatcher("Connectivity")
+    auror_mix.catch(host_to_test)
 
+
+    software_catcher = SoftwareCatcherFactory()
+    auror_soft = software_catcher.getSoftwareCatcher("Architecture")
+    print(auror_soft.define_architecture())
+    #print(auror_soft.catch())
 
 
 if __name__ == '__main__':
