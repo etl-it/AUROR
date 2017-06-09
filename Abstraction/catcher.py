@@ -174,18 +174,24 @@ class Architecture(SoftwareCather):
             sys.exit(2)
 
     def catch_with_report(self,report_file, id):
-            try:
-                s = self.define_architecture()
-                test_title = print_test_title(id)
 
-                with open(report_file, 'wb') as archivo:
+        report_to_print = []
 
-                    archivo.write(test_title)
-                archivo.close()
+        if report_file != "no_report.txt":
 
-            except:
-                print """ERROR"""
-                sys.exit(2)
+            test_title = print_test_title(id)
+            report_to_print.append(test_title)
+
+
+            s = self.define_architecture()
+            report_to_print.append(s)
+
+            with open(report_file, 'w') as fichero:
+                for s in report_to_print:
+                    fichero.write(s + '\n')
+                fichero.close()
+        print("Ejecuto test arch")
+
 
 
 class SoftwareCatcherFactory(CatcherFactory):
