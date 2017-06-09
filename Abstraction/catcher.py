@@ -58,7 +58,7 @@ class Connectivity(MixCatcher):
     def __init__(self, id):
         MixCatcher.__init__(self, "Connectivity", id)
 
-    def getId(self):
+    def getId(self, MixCatcher):
         return MixCatcher.getId()
 
 
@@ -143,7 +143,7 @@ class Architecture(SoftwareCather):
     def __init__(self, id):
         SoftwareCather.__init__(self, "Architecture",id)
 
-    def getId(self):
+    def getId(self, MixCatcher):
         return SoftwareCather.getId()
 
     #Metodo Propio

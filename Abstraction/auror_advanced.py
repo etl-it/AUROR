@@ -269,9 +269,12 @@ def main():
 
     #CREACION DE LOS "CATCHER". Por defecto crearemos 3, uno de cada tipo
     mix_catcher = MixCatcherFactory()
+    catchers = []
+    catchers.append(mix_catcher)
     software_catcher = SoftwareCatcherFactory()
+    catchers.append(software_catcher)
     hardaware_catcher = HardwareCatcherFactory()
-
+    catchers.append(hardaware_catcher)
     aurors = []
 
     for test_name in test_to_do:
@@ -294,10 +297,11 @@ def main():
             pass
 
     for this_auror in aurors:
-        if report is True:
-            this_auror.catch_with_report(report_file, mix_catcher.getId())
-        else:
-            this_auror.catch()
+        for this_catcher in catchers:
+            if report is True:
+                this_auror.catch_with_report(report_file, 5)
+            else:
+                this_auror.catch()
 
 if __name__ == '__main__':
     main()
