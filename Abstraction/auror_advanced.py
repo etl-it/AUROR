@@ -297,11 +297,11 @@ def main():
             pass
 
     for this_auror in aurors:
-        for this_catcher in catchers:
-            if report is True:
-                this_auror.catch_with_report(report_file, 5)
-            else:
-                this_auror.catch()
+
+        if report is True:
+            this_auror.catch_with_report(report_file, 5)
+        else:
+            this_auror.catch()
 
 if __name__ == '__main__':
     main()
