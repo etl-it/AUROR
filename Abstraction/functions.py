@@ -1,7 +1,7 @@
 import random
 
 def rep(num, usados):
-    repetido = false
+    repetido = False
     for i in usados:
         if num == usados[i]:
             repetido = True
@@ -19,7 +19,7 @@ def generate_id(cantidad, min, max, usados):
 
     num = random.randint(min, max)
 
-    repe = rep(num)
+    repe = rep(num, usados)
     while (repe == False):
         num = random.randint(min, max)
 

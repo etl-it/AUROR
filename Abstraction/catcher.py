@@ -22,18 +22,24 @@ class Catcher:
 class HardwareCather(Catcher):
     def __init__(self, name, id):
         Catcher.__init__(self, "Hardware", name, id)
+    def getId(self):
+        return Catcher.getId()
     def catch(self): pass
     def catch_with_report(self, id): pass
 
 class SoftwareCather(Catcher):
     def __init__(self,name, id):
         Catcher.__init__(self, "Software", name, id)
+    def getId(self):
+        return Catcher.getId()
     def catch(self): pass
     def catch_with_report(self, id): pass
 
 class MixCatcher(Catcher):
     def __init__(self, name, id):
         Catcher.__init__(self, "Mix", name, id)
+    def getId(self):
+        return Catcher.getId()
     def catch(self): pass
     def catch_with_report(self, id): pass
 
@@ -52,6 +58,9 @@ class Connectivity(MixCatcher):
     def __init__(self, id):
         MixCatcher.__init__(self, "Connectivity", id)
 
+    def getId(self):
+        return MixCatcher.getId()
+
 
     #Metodos Propios
     def ping_output_code(self, hostname):
@@ -65,29 +74,33 @@ class Connectivity(MixCatcher):
 
         return_output_codes = dict()
 
+        report_to_print = []
+
         if report_file != "no_report.txt":
 
             test_title = print_test_title(id)
+            report_to_print.append(test_title)
 
-             with open(report_file, 'w') as archivo:
+            for hostname in host_list:
+                return_output_codes[hostname] = self.ping_output_code(hostname)
+                print """-----------------------------------"""
+                st = """-----------------------------------"""
+                report_to_print.append(st)
+                if return_output_codes[hostname] == 0:
+                    s = "HOSTNAME: " + hostname + " => OK "
+                    print(s)
+                    report_to_print.append(s)
+                    report_to_print.append(st)
+                else:
+                    s = "HOSTNAME: " ,hostname, " => ERROR "
+                    report_to_print.append(s)
+                    report_to_print.append(st)
 
-                archivo.write(test_title)
+            with open(report_file, 'w') as fichero:
+                for s in report_to_print:
+                    fichero.write(s + '\n')
+                fichero.close()
 
-                for hostname in host_list:
-                    return_output_codes[hostname] = self.ping_output_code(hostname)
-                    print """-----------------------------------"""
-                    st = """-----------------------------------"""
-                    archivo.write(s)
-                    if return_output_codes[hostname] == 0:
-                        s = "HOSTNAME: " + hostname + " => OK "
-                        print(s)
-                        archivo.write(s)
-                        archivo.write(st)
-                    else:
-                        s = "HOSTNAME: " ,hostname, " => ERROR "
-                        archivo.write(s)
-                        archivo.write(st)
-            archivo.close()
 
     def verify_host_list(self, host_list):
         return_output_codes = dict()
@@ -120,7 +133,7 @@ class Connectivity(MixCatcher):
                         '163.117.168.105'
                         ]
         try:
-            self.verify_host_list_report(host_to_test)
+            self.verify_host_list_report(host_to_test, report_file, id)
         except:
             print """ERROR"""
             sys.exit(2)
@@ -129,6 +142,9 @@ class Architecture(SoftwareCather):
     #"CONSTRUCTOR"
     def __init__(self, id):
         SoftwareCather.__init__(self, "Architecture",id)
+
+    def getId(self):
+        return SoftwareCather.getId()
 
     #Metodo Propio
     def define_architecture(self):
@@ -159,10 +175,10 @@ class Architecture(SoftwareCather):
 
     def catch_with_report(self,report_file, id):
             try:
-                s = self.define_architecture())
+                s = self.define_architecture()
                 test_title = print_test_title(id)
 
-                with open(report_file, 'w') as archivo:
+                with open(report_file, 'wb') as archivo:
 
                     archivo.write(test_title)
                 archivo.close()
@@ -175,7 +191,7 @@ class Architecture(SoftwareCather):
 class SoftwareCatcherFactory(CatcherFactory):
     def getSoftwareCatcher(self, name, id):
         if name == "Architecture":
-            return Architecture(pasarleid)
+            return Architecture(id)
 
 
 class HardwareCatcherFactory(CatcherFactory): pass
@@ -183,4 +199,4 @@ class HardwareCatcherFactory(CatcherFactory): pass
 class MixCatcherFactory(CatcherFactory):
     def getMixCatcher(self,name, id):
         if name == "Connectivity":
-            return Connectivity(pasarleid)
+            return Connectivity(id)

@@ -65,7 +65,7 @@ def help():
 def config(config_file):
 
     output_file = "no_report.txt"
-
+    report = False
     #Si el archivo de configuracion no existe
     if path.exists(config_file) is False:
         #Pregunto si lo quiere crear
@@ -92,12 +92,13 @@ def config(config_file):
                 if report.lower() == 'y':
                     cparser.set('BASIC', 'Report', 'YES')
 
-                    #HAN SELECCIONADO QUE QUIEREN UN REPORTE, LUEGO CREAMOS EL FICHERO
-                    index = 1
-                    output_file = "Auror" + str(index)
-                    if path.exists(output_file) is True:
-                        new_index = index + 1
-                        output_file = "Auror" + str(new_index)
+                    # #HAN SELECCIONADO QUE QUIEREN UN REPORTE, LUEGO CREAMOS EL FICHERO
+                    # index = 1
+                    # output_file = "Auror" + str(index) + ".txt"
+                    # if path.exists(output_file) is True:
+                    #     new_index = index + 1
+                    #     output_file = "Auror" + str(new_index)
+                    report = True
 
                 elif report.lower() == 'n':
                     cparser.set('BASIC', 'Report', 'NO')
@@ -118,7 +119,8 @@ def config(config_file):
                 cparser.write(archivo) #Se escribe el archivo de configuracion
         else:
             exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
-    return output_file
+    #return output_file
+    return report
 
 
 def available_tests():
@@ -150,15 +152,15 @@ def select_tests(config_file,test_to_do):
 
     return test_to_do
 
-# def configurate_report(report_file, test_to_do):
-#     cparser = RawConfigParser()
-#     with open(report_file, 'wb') as archivo:
-#         for test in test_to_do:
-#             test_index = test_to_do.index(test)
-#             test_name = 'TEST' + str(test_index)
-#             cparser.add_section(test_name)
-#             cparser.set(test_name, test, "undone yet")
-#         cparser.write(archivo)
+def configurate_report(report_file, test_to_do):
+    cparser = RawConfigParser()
+    with open(report_file, 'wb') as archivo:
+        for test in test_to_do:
+            test_index = test_to_do.index(test)
+            test_name = 'TEST' + str(test_index)
+            cparser.add_section(test_name)
+            cparser.set(test_name, test, "undone yet")
+        cparser.write(archivo)
 
 
 def move_to_done(test,test_to_do,done_tests):
@@ -191,6 +193,7 @@ def init_opt():
             config_file = _arg
         elif _opt in ("-o", "--output"):
             INP_output = _arg
+            report_file = _arg
         elif _opt in ("-h", "--help"):
             help()
             sys.exit()
@@ -201,7 +204,7 @@ def init_opt():
     print "Argumentos y opciones: \n",
     for _opt,_arg in options :
         print " -"+_opt+": "+_arg
-    return config_file
+    return [config_file,report_file]
 
 def sort(test):
     type = ""
@@ -245,17 +248,23 @@ def main():
 
     #Seleccionar la opcion inicial del usaurio (help, fichero de cnfiguracion, o fichero de salida)
     #En el caso de que la opcion sea -i se guardara el fichero de configuracion inicial especificado
-    config_file = init_opt()
+    files = init_opt()
 
-    #Caracterizacio del fichero de configuracion a gusto del usuario
-    report_file = config(config_file)
+    config_file = files[0]
+    report_file = files[1]
+
+    #Caracterizacion del fichero de configuracion a gusto del usuario
+    #report_file = config(config_file)
+    report = config(config_file)
 
     test_to_do = select_tests(config_file,test_to_do)
 
-    if report_file != "no_report.txt": #en este caso el usuario ha seleccionado la opcion de crear REPORTE
-        configurate_report(report_file, test_to_do)
-        report = True
-        print("tests añadidos al fichero de salida")
+    configurate_report(report_file, test_to_do)
+
+    # if report_file != "no_report.txt": #en este caso el usuario ha seleccionado la opcion de crear REPORTE
+    #     configurate_report(report_file, test_to_do)
+    #     report = True
+    #     print("tests  en el fichero de salida")
 
 
     #CREACION DE LOS "CATCHER". Por defecto crearemos 3, uno de cada tipo
@@ -267,15 +276,18 @@ def main():
 
     for test_name in test_to_do:
         if sort(test_name) == "MIX":
-            id = generate_id(100, 1, 50, usados)
+            #id = generate_id(4, 1,10 , usados)
+            id = 1
             auror_mix = mix_catcher.getMixCatcher(test_name,id)
             aurors.append(auror_mix)
         elif sort(test_name) == "SOFTWARE":
-            id = generate_id(100, 1, 50, usados)
+            #id = generate_id(4, 1, 10, usados)
+            id = 2
             auror_soft = software_catcher.getSoftwareCatcher(test_name, id)
             aurors.append(auror_soft)
         elif sort(test_name) == "HARDAWARE":
-            id = generate_id(100, 1, 50, usados)
+            #id = generate_id(4, 1, 10, usados)
+            id = 3
             auror_hard = hardaware_catcher.getHardwareCatcher(test_name, id)
             aurors.append(auror_hard)
         else:
@@ -283,7 +295,7 @@ def main():
 
     for this_auror in aurors:
         if report is True:
-            this_auror.catch_with_report()
+            this_auror.catch_with_report(report_file, mix_catcher.getId())
         else:
             this_auror.catch()
 
