@@ -20,21 +20,28 @@ class HardwareCather(Catcher):
     def __init__(self, name):
         Catcher.__init__(self, "Hardware", name)
     def catch(self): pass
+    def catch_with_report(self, id): pass
 
 class SoftwareCather(Catcher):
     def __init__(self,name):
         Catcher.__init__(self, "Software", name)
-    def catch(self): pass #ESTO HAY QUE CAMBIARLO
+    def catch(self): pass
+    def catch_with_report(self, id): pass
 
 class MixCatcher(Catcher):
     def __init__(self, name):
         Catcher.__init__(self, "Mix", name)
     def catch(self): pass
+    def catch_with_report(self, id): pass
 
 class CatcherFactory:
     def getSoftwareCatcher(self, name): pass
     def getHardwareCatcher(self, name): pass
     def getMixCatcher(self, name): pass
+
+def print_test_title(id):
+    s = "Report of test" + str(id)
+    return s
 
 class Connectivity(MixCatcher):
 
@@ -51,8 +58,35 @@ class Connectivity(MixCatcher):
         stderr = open(os.devnull,'w'))
         return output_code
 
-    def verify_host_list(self, host_list):
+    def verify_host_list_report(self, host_list, report_file, id):
 
+        return_output_codes = dict()
+
+        if report_file != "no_report.txt":
+
+            test_title = print_test_title(id)
+
+             with open(report_file, 'w') as archivo:
+
+                archivo.write(test_title)
+
+                for hostname in host_list:
+                    return_output_codes[hostname] = self.ping_output_code(hostname)
+                    print """-----------------------------------"""
+                    st = """-----------------------------------"""
+                    archivo.write(s)
+                    if return_output_codes[hostname] == 0:
+                        s = "HOSTNAME: " + hostname + " => OK "
+                        print(s)
+                        archivo.write(s)
+                        archivo.write(st)
+                    else:
+                        s = "HOSTNAME: " ,hostname, " => ERROR "
+                        archivo.write(s)
+                        archivo.write(st)
+            archivo.close()
+
+    def verify_host_list(self, host_list):
         return_output_codes = dict()
 
         for hostname in host_list:
@@ -73,6 +107,17 @@ class Connectivity(MixCatcher):
                         ]
         try:
             self.verify_host_list(host_to_test)
+        except:
+            print """ERROR"""
+            sys.exit(2)
+
+    def catch_with_report(self,report_file, id):
+        host_to_test = ['google.com',
+                        '163.117.144.243', ##alcazar01.lab.it.uc3m.es
+                        '163.117.168.105'
+                        ]
+        try:
+            self.verify_host_list_report(host_to_test)
         except:
             print """ERROR"""
             sys.exit(2)

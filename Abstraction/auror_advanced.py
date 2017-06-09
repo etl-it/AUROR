@@ -61,6 +61,9 @@ def help():
     print " -o output file\n"
 
 def config(config_file):
+
+    output_file = "no_report.txt"
+
     #Si el archivo de configuracion no existe
     if path.exists(config_file) is False:
         #Pregunto si lo quiere crear
@@ -86,6 +89,14 @@ def config(config_file):
                 report = raw_input("Desea guardar un informe? >> ")
                 if report.lower() == 'y':
                     cparser.set('BASIC', 'Report', 'YES')
+
+                    #HAN SELECCIONADO QUE QUIEREN UN REPORTE, LUEGO CREAMOS EL FICHERO
+                    index = 1
+                    output_file = "Auror" + str(index)
+                    if path.exists(output_file) is True:
+                        new_index = index + 1
+                        output_file = "Auror" + str(new_index)
+
                 elif report.lower() == 'n':
                     cparser.set('BASIC', 'Report', 'NO')
 
@@ -105,6 +116,7 @@ def config(config_file):
                 cparser.write(archivo) #Se escribe el archivo de configuracion
         else:
             exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
+    return output_file
 
 
 def available_tests():
@@ -135,6 +147,17 @@ def select_tests(config_file,test_to_do):
         test_to_do.append(test)
 
     return test_to_do
+
+# def configurate_report(report_file, test_to_do):
+#     cparser = RawConfigParser()
+#     with open(report_file, 'wb') as archivo:
+#         for test in test_to_do:
+#             test_index = test_to_do.index(test)
+#             test_name = 'TEST' + str(test_index)
+#             cparser.add_section(test_name)
+#             cparser.set(test_name, test, "undone yet")
+#         cparser.write(archivo)
+
 
 def move_to_done(test,test_to_do,done_tests):
     test_to_do.remove(test)
@@ -212,6 +235,7 @@ def main():
 
     test_to_do = []
     done_tests = []
+    report = False
 
     #Mostramos por pantalla el modo de uso al usuario
     usage()
@@ -221,9 +245,15 @@ def main():
     config_file = init_opt()
 
     #Caracterizacio del fichero de configuracion a gusto del usuario
-    config(config_file)
+    report_file = config(config_file)
 
     test_to_do = select_tests(config_file,test_to_do)
+
+    if report_file != "no_report.txt": #en este caso el usuario ha seleccionado la opcion de crear REPORTE
+        configurate_report(report_file, test_to_do)
+        report = True
+        print("tests añadidos al fichero de salida")
+
 
     #CREACION DE LOS "CATCHER". Por defecto crearemos 3, uno de cada tipo
     mix_catcher = MixCatcherFactory()
@@ -246,8 +276,10 @@ def main():
             pass
 
     for this_auror in aurors:
-        this_auror.catch()
-
-
+        if report is True:
+            this_auror.catch_with_report()
+        else:
+            this_auror.catch()
+        
 if __name__ == '__main__':
     main()
