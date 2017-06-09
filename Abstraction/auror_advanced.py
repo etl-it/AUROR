@@ -11,12 +11,14 @@ from os import path
 
 #Funciones propias
 from catcher import *
+from functions import *
 
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 #default_cparser = RawConfigParser()
 
 #Imprimir en pantalla el script y sus argumentos y opciones
+
 print 'ARGV:', " ".join(sys.argv[0:]), "\n"
 
 def usage():
@@ -236,6 +238,7 @@ def main():
     test_to_do = []
     done_tests = []
     report = False
+    usados = []
 
     #Mostramos por pantalla el modo de uso al usuario
     usage()
@@ -264,13 +267,16 @@ def main():
 
     for test_name in test_to_do:
         if sort(test_name) == "MIX":
-            auror_mix = mix_catcher.getMixCatcher(test_name)
+            id = generate_id(100, 1, 50, usados)
+            auror_mix = mix_catcher.getMixCatcher(test_name,id)
             aurors.append(auror_mix)
         elif sort(test_name) == "SOFTWARE":
-            auror_soft = software_catcher.getSoftwareCatcher(test_name)
+            id = generate_id(100, 1, 50, usados)
+            auror_soft = software_catcher.getSoftwareCatcher(test_name, id)
             aurors.append(auror_soft)
         elif sort(test_name) == "HARDAWARE":
-            auror_hard = hardaware_catcher.getHardwareCatcher(test_name)
+            id = generate_id(100, 1, 50, usados)
+            auror_hard = hardaware_catcher.getHardwareCatcher(test_name, id)
             aurors.append(auror_hard)
         else:
             pass
@@ -280,6 +286,6 @@ def main():
             this_auror.catch_with_report()
         else:
             this_auror.catch()
-        
+
 if __name__ == '__main__':
     main()

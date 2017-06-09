@@ -6,38 +6,41 @@ class Catcher:
     __type = ""
     __name = ""
 
-    def __init__(self, type, name):
+    def __init__(self, type, name, id):
         self.__type = type
         self.__name = name
 
     def getType(self):
         return self.__type
 
-    def getNmae(self):
+    def getName(self):
         return self.__name
 
+    def getId(self):
+        return self.__id
+
 class HardwareCather(Catcher):
-    def __init__(self, name):
-        Catcher.__init__(self, "Hardware", name)
+    def __init__(self, name, id):
+        Catcher.__init__(self, "Hardware", name, id)
     def catch(self): pass
     def catch_with_report(self, id): pass
 
 class SoftwareCather(Catcher):
-    def __init__(self,name):
-        Catcher.__init__(self, "Software", name)
+    def __init__(self,name, id):
+        Catcher.__init__(self, "Software", name, id)
     def catch(self): pass
     def catch_with_report(self, id): pass
 
 class MixCatcher(Catcher):
-    def __init__(self, name):
-        Catcher.__init__(self, "Mix", name)
+    def __init__(self, name, id):
+        Catcher.__init__(self, "Mix", name, id)
     def catch(self): pass
     def catch_with_report(self, id): pass
 
 class CatcherFactory:
-    def getSoftwareCatcher(self, name): pass
-    def getHardwareCatcher(self, name): pass
-    def getMixCatcher(self, name): pass
+    def getSoftwareCatcher(self, name, id): pass
+    def getHardwareCatcher(self, name, id): pass
+    def getMixCatcher(self, name, id): pass
 
 def print_test_title(id):
     s = "Report of test" + str(id)
@@ -46,8 +49,8 @@ def print_test_title(id):
 class Connectivity(MixCatcher):
 
     #"CONSTRUCTOR"
-    def __init__(self):
-        MixCatcher.__init__(self, "Connectivity")
+    def __init__(self, id):
+        MixCatcher.__init__(self, "Connectivity", id)
 
 
     #Metodos Propios
@@ -124,8 +127,8 @@ class Connectivity(MixCatcher):
 
 class Architecture(SoftwareCather):
     #"CONSTRUCTOR"
-    def __init__(self):
-        SoftwareCather.__init__(self, "Architecture")
+    def __init__(self, id):
+        SoftwareCather.__init__(self, "Architecture",id)
 
     #Metodo Propio
     def define_architecture(self):
@@ -154,15 +157,30 @@ class Architecture(SoftwareCather):
             print """ERROR"""
             sys.exit(2)
 
+    def catch_with_report(self,report_file, id):
+            try:
+                s = self.define_architecture())
+                test_title = print_test_title(id)
+
+                with open(report_file, 'w') as archivo:
+
+                    archivo.write(test_title)
+                archivo.close()
+
+            except:
+                print """ERROR"""
+                sys.exit(2)
+
+
 class SoftwareCatcherFactory(CatcherFactory):
-    def getSoftwareCatcher(self, name):
+    def getSoftwareCatcher(self, name, id):
         if name == "Architecture":
-            return Architecture()
+            return Architecture(pasarleid)
 
 
 class HardwareCatcherFactory(CatcherFactory): pass
 
 class MixCatcherFactory(CatcherFactory):
-    def getMixCatcher(self,name):
+    def getMixCatcher(self,name, id):
         if name == "Connectivity":
-            return Connectivity()
+            return Connectivity(pasarleid)
