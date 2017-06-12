@@ -10,9 +10,10 @@ from os import path
 
 
 #Funciones propias
-from catcher import *
+#from catcher import *
 from functions import *
-
+from Connectivity import *
+from Architecture import *
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 #default_cparser = RawConfigParser()
