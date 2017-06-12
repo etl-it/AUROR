@@ -19,7 +19,7 @@ class Catcher:
     def getId(self):
         return self.__id
 
-class HardwareCather(Catcher):
+class HardwareCatcher(Catcher):
     def __init__(self, name, id):
         Catcher.__init__(self, "Hardware", name, id)
     def getId(self):
@@ -138,13 +138,13 @@ class Connectivity(MixCatcher):
             print """ERROR"""
             sys.exit(2)
 
-class Architecture(SoftwareCather):
+class Architecture(SoftwareCatcher):
     #"CONSTRUCTOR"
     def __init__(self, id):
-        SoftwareCather.__init__(self, "Architecture",id)
+        SoftwareCatcher.__init__(self, "Architecture",id)
 
     def getId(self, MixCatcher):
-        return SoftwareCather.getId()
+        return SoftwareCatcher.getId()
 
     #Metodo Propio
     def define_architecture(self):

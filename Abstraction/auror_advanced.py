@@ -277,20 +277,19 @@ def main():
     catchers.append(hardaware_catcher)
     aurors = []
 
+
+
     for test_name in test_to_do:
         if sort(test_name) == "MIX":
-            #id = generate_id(4, 1,10 , usados)
-            id = 1
+            id = random.randint(0,1000)
             auror_mix = mix_catcher.getMixCatcher(test_name,id)
             aurors.append(auror_mix)
         elif sort(test_name) == "SOFTWARE":
-            #id = generate_id(4, 1, 10, usados)
-            id = 2
+            id = random.randint(0,1000)
             auror_soft = software_catcher.getSoftwareCatcher(test_name, id)
             aurors.append(auror_soft)
         elif sort(test_name) == "HARDAWARE":
-            #id = generate_id(4, 1, 10, usados)
-            id = 3
+            id = random.randint(0,1000)
             auror_hard = hardaware_catcher.getHardwareCatcher(test_name, id)
             aurors.append(auror_hard)
         else:
@@ -299,7 +298,7 @@ def main():
     for this_auror in aurors:
 
         if report is True:
-            this_auror.catch_with_report(report_file, 5)
+            this_auror.catch_with_report(report_file, id)
         else:
             this_auror.catch()
 
