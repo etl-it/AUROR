@@ -26,3 +26,7 @@ def generate_id(cantidad, min, max, usados):
     usados.append(num)
 
     return num
+
+def print_test_title(id):
+    s = "Report of test" + str(id)
+    return s

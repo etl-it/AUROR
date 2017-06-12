@@ -1,19 +1,19 @@
 from catcher import *
+from functions import *
 
-class Architecture(SoftwareCather):
+
+class Architecture(SoftwareCatcher):
     #"CONSTRUCTOR"
     def __init__(self, id):
-        SoftwareCather.__init__(self, "Architecture",id)
+        SoftwareCatcher.__init__(self, "Architecture",id)
 
-    def getId(self, MixCatcher):
-        return SoftwareCather.getId()
+    def getId(self, SoftwareCatcher):
+        return SoftwareCatcher.getId()
 
     #Metodo Propio
     def define_architecture(self):
-        process = subprocess.Popen(['uname', '-m'],
+        process = subprocess.Popen(['uname', '-m'], stdout = subprocess.PIPE)
 
-                                    stdout = subprocess.PIPE,
-                                    )
         out_value = process.communicate()[0]
 
         out_value = out_value [:-1]
@@ -28,8 +28,9 @@ class Architecture(SoftwareCather):
         return info
 
     #Metodo para generalizacion con factoria
-    def catch(self):
+    def catch(self,id):
         try:
+            print(print_test_title(id))
             print(self.define_architecture())
         except:
             print """ERROR"""
@@ -41,7 +42,8 @@ class Architecture(SoftwareCather):
 
         if report_file != "no_report.txt":
 
-            test_title = print_test_title(id)
+            print('\n' + print_test_title(id) + '\n')
+            print(test_title)
             report_to_print.append(test_title)
 
 
@@ -51,5 +53,5 @@ class Architecture(SoftwareCather):
             with open(report_file, 'w') as fichero:
                 for s in report_to_print:
                     fichero.write(s + '\n')
-                fichero.close()
-        print("Ejecuto test arch")
+                    fichero.close()
+            print("Ejecuto test arch")

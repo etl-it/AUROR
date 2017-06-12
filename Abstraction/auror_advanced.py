@@ -10,10 +10,11 @@ from os import path
 
 
 #Funciones propias
-#from catcher import *
+from catcher import *
 from functions import *
-from Connectivity import *
-from Architecture import *
+# from Connectivity import *
+# from Architecture import *
+from auror_tests import *
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 #default_cparser = RawConfigParser()
@@ -302,7 +303,7 @@ def main():
         if report is True:
             this_auror.catch_with_report(report_file, 5)
         else:
-            this_auror.catch()
+            this_auror.catch(5)
 
 if __name__ == '__main__':
     main()

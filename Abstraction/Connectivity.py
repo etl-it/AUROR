@@ -1,4 +1,5 @@
 from catcher import *
+from functions import *
 
 class Connectivity(MixCatcher):
 
@@ -64,13 +65,14 @@ class Connectivity(MixCatcher):
                 print """-----------------------------------"""
 
     #Metodo para generalizacion con factoria
-    def catch(self): #params = host_list
+    def catch(self,id): #params = host_list
         host_to_test = ['google.com',
                         '163.117.144.243', ##alcazar01.lab.it.uc3m.es
                         '163.117.168.105'
                         ]
         try:
-            self.verify_host_list(host_to_test)
+                print('\n' + print_test_title(id) + '\n')
+                self.verify_host_list(host_to_test)
         except:
             print """ERROR"""
             sys.exit(2)
@@ -81,6 +83,7 @@ class Connectivity(MixCatcher):
                         '163.117.168.105'
                         ]
         try:
+            print('\n' + print_test_title(id) + '\n')
             self.verify_host_list_report(host_to_test, report_file, id)
         except:
             print """ERROR"""
