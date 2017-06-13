@@ -279,18 +279,18 @@ def main():
     catchers.append(hardaware_catcher)
     aurors = []
 
-
+    print test_to_do
 
     for test_name in test_to_do:
         if sort(test_name) == "MIX":
             id = random.randint(0,1000)
             auror_mix = mix_catcher.getMixCatcher(test_name,id)
             aurors.append(auror_mix)
-        elif sort(test_name) == "SOFTWARE":
+        if sort(test_name) == "SOFTWARE":
             id = random.randint(0,1000)
             auror_soft = software_catcher.getSoftwareCatcher(test_name, id)
             aurors.append(auror_soft)
-        elif sort(test_name) == "HARDAWARE":
+        if sort(test_name) == "HARDAWARE":
             id = random.randint(0,1000)
             auror_hard = hardaware_catcher.getHardwareCatcher(test_name, id)
             aurors.append(auror_hard)

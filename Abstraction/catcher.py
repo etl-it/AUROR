@@ -80,9 +80,10 @@ class Connectivity(MixCatcher):
         if report_file != "no_report.txt":
 
             test_title = print_test_title(id)
+            print('\n')
             print(test_title)
             print """**************************************"""
-            print('\n')
+        
             report_to_print.append(test_title)
 
             for hostname in host_list:
@@ -109,9 +110,9 @@ class Connectivity(MixCatcher):
     def verify_host_list(self, host_list):
         return_output_codes = dict()
 
+        print('\n')
         print(test_title)
         print """**************************************"""
-        print('\n')
 
         for hostname in host_list:
             return_output_codes[hostname] = self.ping_output_code(hostname)
@@ -189,9 +190,10 @@ class Architecture(SoftwareCatcher):
 
             test_title = print_test_title(id)
             report_to_print.append(test_title)
+            print('\n')
             print(test_title)
             print """**************************************"""
-            print('\n')
+
 
 
             s = self.define_architecture()
@@ -225,10 +227,11 @@ class Devices(HardwareCatcher):
             test_title = print_test_title(id)
             report_to_print.append(test_title)
 
+            print('\n')
             print(test_title)
             print """**************************************"""
-            print('\n')
-            
+
+
             st = """-----------------------------------"""
             report_to_print.append(st)
 
