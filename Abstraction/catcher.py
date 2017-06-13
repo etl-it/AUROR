@@ -1,6 +1,7 @@
 import subprocess
 import os
 import sys
+import shlex
 
 class Catcher:
     __type = ""
@@ -25,15 +26,15 @@ class HardwareCatcher(Catcher):
     def getId(self):
         return Catcher.getId()
     def catch(self): pass
-    def catch_with_report(self, id): pass
+    def catch_with_report(self, report_file, id): pass
 
-class SoftwareCather(Catcher):
+class SoftwareCatcher(Catcher):
     def __init__(self,name, id):
         Catcher.__init__(self, "Software", name, id)
     def getId(self):
         return Catcher.getId()
     def catch(self): pass
-    def catch_with_report(self, id): pass
+    def catch_with_report(self,report_file, id): pass
 
 class MixCatcher(Catcher):
     def __init__(self, name, id):
@@ -41,7 +42,7 @@ class MixCatcher(Catcher):
     def getId(self):
         return Catcher.getId()
     def catch(self): pass
-    def catch_with_report(self, id): pass
+    def catch_with_report(self, report_file, id): pass
 
 class CatcherFactory:
     def getSoftwareCatcher(self, name, id): pass
@@ -79,6 +80,9 @@ class Connectivity(MixCatcher):
         if report_file != "no_report.txt":
 
             test_title = print_test_title(id)
+            print(test_title)
+            print """**************************************"""
+            print('\n')
             report_to_print.append(test_title)
 
             for hostname in host_list:
@@ -104,6 +108,10 @@ class Connectivity(MixCatcher):
 
     def verify_host_list(self, host_list):
         return_output_codes = dict()
+
+        print(test_title)
+        print """**************************************"""
+        print('\n')
 
         for hostname in host_list:
             return_output_codes[hostname] = self.ping_output_code(hostname)
@@ -181,16 +189,90 @@ class Architecture(SoftwareCatcher):
 
             test_title = print_test_title(id)
             report_to_print.append(test_title)
+            print(test_title)
+            print """**************************************"""
+            print('\n')
 
 
             s = self.define_architecture()
+            print(s)
             report_to_print.append(s)
 
             with open(report_file, 'w') as fichero:
                 for s in report_to_print:
-                    fichero.write(s + '\n')
+                    if s != None:
+                        s = str(s)
+                        fichero.write(s + '\n')
+
+
+
+class Devices(HardwareCatcher):
+
+    def __init__(self, id):
+        HardwareCatcher.__init__(self, "Hardware", id)
+
+    def getId(self, HardwareCatcher):
+        return HardwareCatcher.getId()
+
+    def do_lspci(self, report_file, id):
+
+        report_to_print = []
+
+        print("estoy aqui")
+
+        if report_file != "no_report.txt":
+
+            test_title = print_test_title(id)
+            report_to_print.append(test_title)
+
+            print(test_title)
+            print """**************************************"""
+            print('\n')
+            
+            st = """-----------------------------------"""
+            report_to_print.append(st)
+
+            process = subprocess.Popen(shlex.split('lspci'), stdout = subprocess.PIPE)
+
+            for i in range(1,10):
+                output = process.stdout.readline()
+                if output == '' and process.poll() is not None:
+                    break
+                if output:
+                    print output.strip()
+
+            rc = process.poll()
+            print(rc)
+            report_to_print.append(rc)
+
+            with open(report_file, 'w') as fichero:
+                for s in report_to_print:
+                    if s != None:
+                        s = str(s)
+                        fichero.write(s + '\n')
                 fichero.close()
-        print("Ejecuto test arch")
+
+    def do(self):
+        process = subprocess.Popen(shlex.split('lspci'), stdout = subprocess.PIPE)
+
+        # for i in range(1,10):
+        #     output = process.stdout.readline()
+        #     if output == '' and process.poll() is not None:
+        #         break
+        #     if output:
+        #         print output.strip()
+
+        rc = hola
+        return rc
+
+    def catch(self):
+        rc = "hola"
+        print(rc)
+
+
+    def catch_with_report(self,report_file, id):
+        self.do_lspci(report_file,id)
+
 
 
 
@@ -200,7 +282,10 @@ class SoftwareCatcherFactory(CatcherFactory):
             return Architecture(id)
 
 
-class HardwareCatcherFactory(CatcherFactory): pass
+class HardwareCatcherFactory(CatcherFactory):
+    def getHardwareCatcher(self,name,id):
+        if name == "Devices":
+            return Devices(id)
 
 class MixCatcherFactory(CatcherFactory):
     def getMixCatcher(self,name, id):

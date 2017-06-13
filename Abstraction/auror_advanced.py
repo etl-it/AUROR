@@ -115,6 +115,8 @@ def config(config_file):
                         cparser.set('TESTS', 'Test1', 'Connectivity')
                     elif int(test) == 2:
                         cparser.set('TESTS', 'Test2', 'Architecture')
+                    elif int(test) == 3:
+                        cparser.set('TESTS', 'Test3', 'Devices')
 
                 cparser.write(archivo) #Se escribe el archivo de configuracion
         else:
@@ -127,7 +129,7 @@ def available_tests():
     print """
         1 => Connectivity
         2 => Architecture
-        3 =>
+        3 => Devices
         .
         .
         .
@@ -210,7 +212,7 @@ def sort(test):
     type = ""
 
     possible_mix_tests = ["Connectivity"]
-    possible_hardware_tests = ["Este"]
+    possible_hardware_tests = ["Devices"]
     possible_software_tests = ["Architecture"]
 
     for i in possible_mix_tests:
@@ -295,6 +297,7 @@ def main():
         else:
             pass
 
+    print aurors
     for this_auror in aurors:
 
         if report is True:
