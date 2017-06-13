@@ -229,7 +229,7 @@ def sort(test):
             pass
     for k in possible_software_tests:
         k_index = possible_software_tests.index(k)
-        if test == possible_hardware_tests[k_index]:
+        if test == possible_software_tests[k_index]:
             type = "SOFTWARE"
         else:
             pass
@@ -270,8 +270,8 @@ def main():
 
 
     #CREACION DE LOS "CATCHER". Por defecto crearemos 3, uno de cada tipo
-    mix_catcher = MixCatcherFactory()
     catchers = []
+    mix_catcher = MixCatcherFactory()
     catchers.append(mix_catcher)
     software_catcher = SoftwareCatcherFactory()
     catchers.append(software_catcher)
@@ -287,16 +287,22 @@ def main():
             auror_mix = mix_catcher.getMixCatcher(test_name,id1)
             aurors.append(auror_mix)
             print("creo mix")
+            print(test_name)
+            print(sort(test_name))
         if sort(test_name) == "SOFTWARE":
             id2 = random.randint(0,1000)
             auror_soft = software_catcher.getSoftwareCatcher("Architecture", id2)
             aurors.append(auror_soft)
             print("creo soft")
+            print(test_name)
+            print(sort(test_name))
         if sort(test_name) == "HARDAWARE":
             id3 = random.randint(0,1000)
             auror_hard = hardaware_catcher.getHardwareCatcher("Devices", id3)
             aurors.append(auror_hard)
             print("creo hard")
+            print(test_name)
+            print(sort(test_name))
         else:
             pass
 

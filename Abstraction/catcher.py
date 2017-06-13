@@ -83,7 +83,7 @@ class Connectivity(MixCatcher):
             print('\n')
             print(test_title)
             print """**************************************"""
-        
+
             report_to_print.append(test_title)
 
             for hostname in host_list:
@@ -205,6 +205,7 @@ class Architecture(SoftwareCatcher):
                     if s != None:
                         s = str(s)
                         fichero.write(s + '\n')
+                fichero.close()
 
 
 
