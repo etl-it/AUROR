@@ -212,8 +212,8 @@ def sort(test):
     type = ""
 
     possible_mix_tests = ["Connectivity"]
-    possible_hardware_tests = ["Devices"]
-    possible_software_tests = ["Architecture"]
+    possible_hardware_tests = ["Devices", "hola", "adios"]
+    possible_software_tests = ["Architecture", "venga", "funciona"]
 
     for i in possible_mix_tests:
         i_index = possible_mix_tests.index(i)
@@ -283,17 +283,20 @@ def main():
 
     for test_name in test_to_do:
         if sort(test_name) == "MIX":
-            id = random.randint(0,1000)
-            auror_mix = mix_catcher.getMixCatcher(test_name,id)
+            id1 = random.randint(0,1000)
+            auror_mix = mix_catcher.getMixCatcher(test_name,id1)
             aurors.append(auror_mix)
+            print("creo mix")
         if sort(test_name) == "SOFTWARE":
-            id = random.randint(0,1000)
-            auror_soft = software_catcher.getSoftwareCatcher(test_name, id)
+            id2 = random.randint(0,1000)
+            auror_soft = software_catcher.getSoftwareCatcher("Architecture", id2)
             aurors.append(auror_soft)
+            print("creo soft")
         if sort(test_name) == "HARDAWARE":
-            id = random.randint(0,1000)
-            auror_hard = hardaware_catcher.getHardwareCatcher(test_name, id)
+            id3 = random.randint(0,1000)
+            auror_hard = hardaware_catcher.getHardwareCatcher("Devices", id3)
             aurors.append(auror_hard)
+            print("creo hard")
         else:
             pass
 
