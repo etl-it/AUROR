@@ -311,24 +311,28 @@ class Ethtool(SoftwareCatcher):
             report_to_print.append(st_pre)
             report_to_print.append(st)
 
-            process = subprocess.Popen(shlex.split(['sudo', 'ethtool', 'eth0']), stdout = subprocess.PIPE)
-            for i in range(1,10):
-                output = process.stdout.readline()
-                if output == '' and process.poll() is not None:
-                    break
-                if output:
-                    print output.strip()
+            fp = os.open(['sudo', 'ethtool', 'eth0'])
+            data = fp.read()
+            data = data.split('\n')
 
-            rc = process.poll()
-            print(rc)
-            report_to_print.append(rc)
+            # process = subprocess.Popen(shlex.split(['sudo', 'ethtool', 'eth0']), stdout = subprocess.PIPE)
+            # for i in range(1,10):
+            #     output = process.stdout.readline()
+            #     if output == '' and process.poll() is not None:
+            #         break
+            #     if output:
+            #         print output.strip()
 
-            with open(report_file, 'a') as fichero:
-                for s in report_to_print:
-                    if s != None:
-                        s = str(s)
-                        fichero.write(s + '\n')
-                fichero.close()
+            #rc = process.poll()
+            print(data)
+            # report_to_print.append(rc)
+            #
+            # with open(report_file, 'a') as fichero:
+            #     for s in report_to_print:
+            #         if s != None:
+            #             s = str(s)
+            #             fichero.write(s + '\n')
+            #     fichero.close()
 
     def catch_with_report(self,report_file, id):
         self.do_ethtool(report_file,id)
