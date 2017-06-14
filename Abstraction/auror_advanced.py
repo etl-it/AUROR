@@ -278,37 +278,27 @@ def main():
     hardaware_catcher = HardwareCatcherFactory()
     catchers.append(hardaware_catcher)
     aurors = []
-
-    print test_to_do
+    id1 = ""
+    id2 = ""
+    id3 = ""
 
     for test_name in test_to_do:
         if sort(test_name) == "MIX":
             id1 = random.randint(0,1000)
             auror_mix = mix_catcher.getMixCatcher(test_name,id1)
             aurors.append(auror_mix)
-            print("creo mix")
-            print(test_name)
-            print(sort(test_name))
         if sort(test_name) == "SOFTWARE":
             id2 = random.randint(0,1000)
             auror_soft = software_catcher.getSoftwareCatcher("Architecture", id2)
             aurors.append(auror_soft)
-            print("creo soft")
-            print(test_name)
-            print(sort(test_name))
         if sort(test_name) == "HARDWARE":
             id3 = random.randint(0,1000)
             auror_hard = hardaware_catcher.getHardwareCatcher("Devices", id3)
             aurors.append(auror_hard)
-            print("creo hard")
-            print(test_name)
-            print(sort(test_name))
         else:
             pass
 
-    print aurors
     for this_auror in aurors:
-
         if report is True:
             this_auror.catch_with_report(report_file, id)
         else:

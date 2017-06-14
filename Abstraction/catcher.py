@@ -194,8 +194,6 @@ class Architecture(SoftwareCatcher):
             print(test_title)
             print """**************************************"""
 
-
-
             s = self.define_architecture()
             print(s)
             report_to_print.append(s)
@@ -220,8 +218,6 @@ class Devices(HardwareCatcher):
     def do_lspci(self, report_file, id):
 
         report_to_print = []
-
-        print("estoy aqui")
 
         if report_file != "no_report.txt":
 
