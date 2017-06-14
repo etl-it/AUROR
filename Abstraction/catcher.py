@@ -311,7 +311,7 @@ class Ethtool(SoftwareCatcher):
             report_to_print.append(st_pre)
             report_to_print.append(st)
 
-            fp = os.open(['sudo', 'ethtool', 'eth0'])
+            fp = os.open('sudo ethtool eth0')
             data = fp.read()
             data = data.split('\n')
 

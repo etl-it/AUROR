@@ -6,7 +6,7 @@ def main():
     output = " Interface: %s Speed: %s"
     noinfo = "(Speed Unknown)"
     speed  = noinfo
-
+    
 
     fp = os.popen("ifconfig -a")
     dat=fp.read()
