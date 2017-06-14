@@ -82,9 +82,13 @@ class Connectivity(MixCatcher):
             test_title = print_test_title(id)
             print('\n')
             print(test_title)
+            salt = '\n'
+            st_pre = """**************************************""" +'\n'
             print """**************************************"""
 
+            report_to_print.append(salt)
             report_to_print.append(test_title)
+            report_to_print.append(st_pre)
 
             for hostname in host_list:
                 return_output_codes[hostname] = self.ping_output_code(hostname)
@@ -101,7 +105,7 @@ class Connectivity(MixCatcher):
                     report_to_print.append(s)
                     report_to_print.append(st)
 
-            with open(report_file, 'w') as fichero:
+            with open(report_file, 'a') as fichero:
                 for s in report_to_print:
                     fichero.write(s + '\n')
                 fichero.close()
@@ -188,17 +192,20 @@ class Architecture(SoftwareCatcher):
 
         if report_file != "no_report.txt":
 
+            salt = '\n'
             test_title = print_test_title(id)
+            report_to_print.append(salt)
             report_to_print.append(test_title)
             print('\n')
             print(test_title)
             print """**************************************"""
-
+            st_pre = """**************************************""" +'\n'
+            report_to_print.append(st_pre)
             s = self.define_architecture()
             print(s)
             report_to_print.append(s)
 
-            with open(report_file, 'w') as fichero:
+            with open(report_file, 'a') as fichero:
                 for s in report_to_print:
                     if s != None:
                         s = str(s)
@@ -221,15 +228,18 @@ class Devices(HardwareCatcher):
 
         if report_file != "no_report.txt":
 
+            salt = '\n'
             test_title = print_test_title(id)
+            report_to_print.append(salt)
             report_to_print.append(test_title)
 
             print('\n')
             print(test_title)
             print """**************************************"""
 
-
+            st_pre = """**************************************""" +'\n'
             st = """-----------------------------------"""
+            report_to_print.append(st_pre)
             report_to_print.append(st)
 
             process = subprocess.Popen(shlex.split('lspci'), stdout = subprocess.PIPE)
@@ -245,7 +255,7 @@ class Devices(HardwareCatcher):
             print(rc)
             report_to_print.append(rc)
 
-            with open(report_file, 'w') as fichero:
+            with open(report_file, 'a') as fichero:
                 for s in report_to_print:
                     if s != None:
                         s = str(s)

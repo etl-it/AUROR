@@ -161,7 +161,7 @@ def configurate_report(report_file, test_to_do):
             test_index = test_to_do.index(test)
             test_name = 'TEST' + str(test_index)
             cparser.add_section(test_name)
-            cparser.set(test_name, test, "undone yet")
+            cparser.set(test_name, test, 'done')
         cparser.write(archivo)
 
 
