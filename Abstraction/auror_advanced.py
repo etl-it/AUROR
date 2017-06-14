@@ -296,7 +296,7 @@ def main():
             print("creo soft")
             print(test_name)
             print(sort(test_name))
-        if sort(test_name) == "HARDAWARE":
+        if sort(test_name) == "HARDWARE":
             id3 = random.randint(0,1000)
             auror_hard = hardaware_catcher.getHardwareCatcher("Devices", id3)
             aurors.append(auror_hard)
