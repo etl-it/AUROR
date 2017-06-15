@@ -1,32 +1,28 @@
 import os
 from ConfigParser import RawConfigParser
 
-#ver si el fichero de configuracion ya existe en el directorio
-
-#dir = "/usr/lab/alum/0330717/Auror_workspace"
-
-
 def select_hosts():
     host_tests = []
 
     end = False
 
-    while end is False :
+    while end is False:
 
-        host = raw_input("Insert hosts to verify if ping exits.\n When you dont wanna to configure more tests insert END. >>")
+        host = raw_input('Insert hosts to verify if ping exits. When you dont wanna to configure more tests insert END. >>')
 
         host_tests.append(host)
 
-        if hosts == "END":
+        if host == "END":
+            host_tests.remove(host)
             end = True
 
-    return hosts_tests
+    return host_tests
 
 
 def config_connectivity_conf(dir):
 
-    current_dir = os.getCwd()
-    config_connectivity_conf = "cc.conf"
+    current_dir = os.getcwd()
+    config_connectivity_conf = "/usr/lab/alum/0330717/Auror_workspace/cc.conf"
     cparser = RawConfigParser()
 
     if current_dir != dir :
@@ -35,10 +31,11 @@ def config_connectivity_conf(dir):
     hosts_tests = select_hosts()
 
     with open(config_connectivity_conf, 'wb') as archivo:
+        cparser.add_section("HOSTS")
         for host in hosts_tests :
-            host_index = hosts_tests.index(tests)
+            host_index = hosts_tests.index(host)
             host_name = 'HOST' + str(host_index)
-            cprser.set("HOSTS", host_name, host)
+            cparser.set("HOSTS", host_name, host)
         cparser.write(archivo)
 
 def main():
