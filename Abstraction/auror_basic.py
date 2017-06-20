@@ -6,16 +6,12 @@ import getopt
 from ConfigParser import RawConfigParser
 
 #Funciones propias
-<<<<<<< HEAD
-#from menu import menu
-=======
 from menu import menu
 from menu import possible_tests
 from connectivity import Connectivity
 from AurorTest import AurorTest
 from architecture import Architecture
 from devices import Devices
->>>>>>> 90f6783c483543e073769f92bc5308e39f4f9a6f
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 default_cparser = RawConfigParser()
