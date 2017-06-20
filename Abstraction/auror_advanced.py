@@ -10,8 +10,9 @@ from os import path
 
 
 #Funciones propias
-from catcher import *
+#from auror_tests import *
 from functions import *
+from catcher import *
 
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO

@@ -3,6 +3,8 @@ import os
 import sys
 import shlex
 
+from auror_tests import *
+
 class Catcher:
     __type = ""
     __name = ""

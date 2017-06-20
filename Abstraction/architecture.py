@@ -1,3 +1,5 @@
+from catcher import *
+
 class Architecture(SoftwareCatcher):
     #"CONSTRUCTOR"
     def __init__(self, id):

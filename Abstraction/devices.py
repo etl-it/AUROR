@@ -1,3 +1,4 @@
+#from catcher import *
 
 class Devices(HardwareCatcher):
 
