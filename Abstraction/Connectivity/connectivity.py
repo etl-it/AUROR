@@ -1,6 +1,7 @@
-#from catcher import *
+from catcher import *
 
 from functions import functions
+from config_connectivity import config_connectivity
 
 class Connectivity(MixCatcher):
 
@@ -52,12 +53,10 @@ class Connectivity(MixCatcher):
                     fichero.write(s + '\n')
                 fichero.close()
 
-
     def catch(self,report_file, id):
-        host_to_test = ['google.com',
-                        '163.117.144.243', ##alcazar01.lab.it.uc3m.es
-                        '163.117.168.105'
-                        ]
+
+        host_to_test = select_hosts()
+
         try:
             self.verify_host_list(host_to_test)
         except:

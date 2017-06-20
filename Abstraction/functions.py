@@ -26,3 +26,22 @@ def generate_id(cantidad, min, max, usados):
     usados.append(num)
 
     return num
+
+def format1(id, report_to_print):
+
+        test_title = print_test_title(id)
+        print('\n')
+        print(test_title)
+        salt = '\n'
+        st_pre = """**************************************""" +'\n'
+        print """**************************************"""
+
+        report_to_print.append(salt)
+        report_to_print.append(test_title)
+        report_to_print.append(st_pre)
+
+def format2(report_to_print):
+
+    print """-----------------------------------"""
+    st = """-----------------------------------"""
+    report_to_print.append(st)
