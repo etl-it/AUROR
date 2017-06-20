@@ -1,6 +1,6 @@
-from Catcher import catcher
-from functions import *
-from Connectivity import config_connectivity
+from Abstraction.Catcher import catcher
+from Abstraction.Catcher import functions
+from Abstraction.Connectivity import config_connectivity
 
 class Connectivity(MixCatcher):
 

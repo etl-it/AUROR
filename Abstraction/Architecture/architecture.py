@@ -1,4 +1,4 @@
-from Catcher import catcher
+from Abstraction.Catcher import catcher
 
 class Architecture(SoftwareCatcher):
     #"CONSTRUCTOR"

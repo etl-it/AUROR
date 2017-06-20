@@ -10,9 +10,9 @@ from os import path
 
 
 #Funciones propias
-from Catcher import auror_tests 
-from functions import *
-from catcher import *
+from Abstaction.Catcher import auror_tests
+from Abstraction.Catcher import functions
+from Abstraction.Catcher import catcher 
 
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
