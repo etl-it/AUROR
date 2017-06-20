@@ -10,7 +10,7 @@ from os import path
 
 
 #Funciones propias
-from auror_tests import *
+from Catcher import auror_tests 
 from functions import *
 from catcher import *
 
@@ -71,7 +71,7 @@ def init_opt():
         elif _opt in ("-o", "--output"):
             INP_output = _arg
             report_file = _arg
-        elif _opt in ("-d", "--default")
+        elif _opt in ("-d", "--default"):
             config_file = "/usr/lab/alum/0330717/Auror_workspace/Auror_default.conf"
         elif _opt in ("-h", "--help"):
             help()

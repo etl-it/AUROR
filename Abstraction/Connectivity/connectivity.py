@@ -1,6 +1,6 @@
-from Cathcer/catcher import *
+from Catcher import catcher
 from functions import *
-from config_connectivity import *
+from Connectivity import config_connectivity
 
 class Connectivity(MixCatcher):
 

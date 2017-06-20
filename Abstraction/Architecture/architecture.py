@@ -1,4 +1,4 @@
-from catcher import *
+from Catcher import catcher
 
 class Architecture(SoftwareCatcher):
     #"CONSTRUCTOR"

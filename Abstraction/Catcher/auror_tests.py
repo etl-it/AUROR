@@ -1,6 +1,6 @@
-from Connectivity/connectivity import *
-from Architecture/architecture import *
-from Devices/devices import *
+from Connectivity import connectivity
+from Architecture import architecture
+from Devices import devices
 
 
 def available_tests():

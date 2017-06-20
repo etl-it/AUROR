@@ -1,4 +1,4 @@
-from catcher import *
+from Catcher import cather
 
 class Devices(HardwareCatcher):
 
