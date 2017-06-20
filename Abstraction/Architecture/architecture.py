@@ -27,32 +27,19 @@ class Architecture(SoftwareCatcher):
 
         return info
 
-    #Metodo para generalizacion con factoria
-    def catch(self):
-        try:
-            print(self.define_architecture())
-        except:
-            print """ERROR"""
-            sys.exit(2)
 
-    def catch_with_report(self,report_file, id):
+    def catch(self,report_file, id):
 
         report_to_print = []
 
-        if report_file != "no_report.txt":
+        format1(id,report_to_print)
 
-            salt = '\n'
-            test_title = print_test_title(id)
-            report_to_print.append(salt)
-            report_to_print.append(test_title)
-            print('\n')
-            print(test_title)
-            print """**************************************"""
-            st_pre = """**************************************""" +'\n'
-            report_to_print.append(st_pre)
-            s = self.define_architecture()
-            print(s)
-            report_to_print.append(s)
+
+        s = self.define_architecture()
+        print(s)
+        report_to_print.append(s)
+
+        if report_file != "no_report.txt":
 
             with open(report_file, 'a') as fichero:
                 for s in report_to_print:

@@ -1,7 +1,6 @@
-from catcher import *
-
-from functions import functions
-from config_connectivity import config_connectivity
+from Cathcer/catcher import *
+from functions import *
+from config_connectivity import *
 
 class Connectivity(MixCatcher):
 
@@ -36,15 +35,13 @@ class Connectivity(MixCatcher):
             if return_output_codes[hostname] == 0:
                 s = "HOSTNAME: " + hostname + " => OK "
                 print(s)
-                print """-----------------------------------"""
                 report_to_print.append(s)
-                report_to_print.append(st)
+                format2(report_to_print)
             else:
                 s = "HOSTNAME: " ,hostname, " => ERROR "
                 print(s)
-                print """-----------------------------------"""
                 report_to_print.append(s)
-                report_to_print.append(st)
+                format2(report_to_print)
 
         if report_file != "no_report.txt":
 
