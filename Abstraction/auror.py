@@ -6,7 +6,7 @@ import getopt
 from ConfigParser import RawConfigParser
 
 #Funciones propias
-from menu import menu
+#from menu import menu
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
 default_cparser = RawConfigParser()
