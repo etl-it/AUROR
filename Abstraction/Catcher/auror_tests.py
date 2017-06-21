@@ -1,9 +1,6 @@
-
-
-from Connectivity import connectivity
-from Architecture import architecture
-from Devices import devices
-
+from Connectivity.connectivity import Connectivity
+from Architecture.architecture import Architecture
+from Devices.devices import Devices
 
 def available_tests():
     print """

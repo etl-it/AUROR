@@ -1,4 +1,5 @@
-from Catcher import auror_tests 
+from Catcher import auror_tests
+from Connectivity.connectivity import Connectivity
 
 class CatcherFactory:
     def getSoftwareCatcher(self, name, id): pass

@@ -15,10 +15,11 @@ from ConfigParser import RawConfigParser
 from os import path
 
 #Funciones propias
-from Catcher import auror_tests
-from Catcher import functions
+from Catcher.auror_tests import *
+from Catcher.functions import *
 from Catcher import catcher
-from Config import config_main
+from Catcher.catcher_fact import CatcherFactory, SoftwareCatcherFactory, HardwareCatcherFactory, MixCatcherFactory
+#from Config import config_main
 
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO
@@ -67,63 +68,6 @@ def configuration_file_style():
         .
 
     """
-
-def config(config_file):
-
-    output_file = "no_report.txt"
-    report = False
-    #Si el archivo de configuracion no existe
-    if path.exists(config_file) is False:
-        #Pregunto si lo quiere crear
-        print('La aplicacion aun no se ha configurado correctamente')
-        continuar = raw_input('Desea configurarla ahora? (y/n) ')
-        #Creo el archivo de configuracion
-        if continuar.lower() == 'y' :
-            cparser = RawConfigParser() #Se crea el objeto ConfigParser
-            with open(config_file, 'wb') as archivo:
-                configuration_file_style() #Se muestra al usario la fomra que debe tener el fihchero de configuracion
-
-                cparser.add_section('BASIC')
-                cparser.add_section('TESTS')
-
-                severity = raw_input('Seleccione el grado de profundidad de los tests: >> ')
-                if severity.lower() == 'l':
-                    cparser.set('BASIC', 'SeverityLevel', 'LOW')
-                elif severity.lower() == 'm':
-                    cparser.set('BASIC', 'SeverityLevel', 'MEDIUM')
-                elif severity.lower() == 'h':
-                    cparser.set('BASIC', 'SeverityLevel', 'HIGH')
-
-                report = raw_input("Desea guardar un informe? >> ")
-                if report.lower() == 'y':
-                    cparser.set('BASIC', 'Report', 'YES')
-                    report = True
-
-                elif report.lower() == 'n':
-                    cparser.set('BASIC', 'Report', 'NO')
-
-                number_of_tests = raw_input('Introduzca el numero de test que quiere llevar a cabo: >> ')
-
-                range_number_of_tests = range(int(number_of_tests))
-
-                for test in range_number_of_tests:
-                    available_tests()
-
-                    test = raw_input('Introduzca el identificador del test que quiere realizar: >>')
-                    if int(test) == 1:
-                        cparser.set('TESTS', 'Test1', 'Connectivity')
-                    elif int(test) == 2:
-                        cparser.set('TESTS', 'Test2', 'Architecture')
-                    elif int(test) == 3:
-                        cparser.set('TESTS', 'Test3', 'Devices')
-
-                cparser.write(archivo) #Se escribe el archivo de configuracion
-        else:
-            exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
-    #return output_file
-    return report
-
-
 def init_opt():
     config_file = ' ' #Fihero de config por defecto
     #Definir los parametros obligatorios (:) y opcionales, en su forma abreviada y reducida
@@ -163,12 +107,64 @@ def init_opt():
         print " -"+_opt+": "+_arg
     return [config_file,report_file]
 
+def config(config_file):
+
+    output_file = "no_report.txt"
+    report = False
+    #Si el archivo de configuracion no existe
+    #if path.exists(config_file) is False:
+        #Pregunto si lo quiere crear
+    print('La aplicacion aun no se ha configurado correctamente')
+    continuar = raw_input('Desea configurarla ahora? (y/n) ')
+    #Creo el archivo de configuracion
+    if continuar.lower() == 'y' :
+        cparser = RawConfigParser() #Se crea el objeto ConfigParser
+        with open(config_file, 'wb') as archivo:
+            configuration_file_style() #Se muestra al usario la fomra que debe tener el fihchero de configuracion
+
+            cparser.add_section('BASIC')
+            cparser.add_section('TESTS')
+
+            severity = raw_input('Seleccione el grado de profundidad de los tests: >> ')
+            if severity.lower() == 'l':
+                cparser.set('BASIC', 'SeverityLevel', 'LOW')
+            elif severity.lower() == 'm':
+                cparser.set('BASIC', 'SeverityLevel', 'MEDIUM')
+            elif severity.lower() == 'h':
+                cparser.set('BASIC', 'SeverityLevel', 'HIGH')
+
+            report = raw_input("Desea guardar un informe? >> ")
+            if report.lower() == 'y':
+                cparser.set('BASIC', 'Report', 'YES')
+                report = True
+
+            elif report.lower() == 'n':
+                cparser.set('BASIC', 'Report', 'NO')
+
+            number_of_tests = raw_input('Introduzca el numero de test que quiere llevar a cabo: >> ')
+
+            range_number_of_tests = range(int(number_of_tests))
+
+            for test in range_number_of_tests:
+                available_tests()
+
+                test = raw_input('Introduzca el identificador del test que quiere realizar: >>')
+                if int(test) == 1:
+                    cparser.set('TESTS', 'Test1', 'Connectivity')
+                elif int(test) == 2:
+                    cparser.set('TESTS', 'Test2', 'Architecture')
+                elif int(test) == 3:
+                    cparser.set('TESTS', 'Test3', 'Devices')
+
+            cparser.write(archivo) #Se escribe el archivo de configuracion
+    #     else:
+    #         exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
+    # #return output_file
+    return report
 
 def select_tests(config_file,test_to_do):
     cparser = RawConfigParser()
     cparser.read(config_file)
-
-    #all_tests = cparser.options('TESTS')
 
     options_tests = cparser.options('TESTS')
 
@@ -217,8 +213,7 @@ def main():
     config_file = files[0]
     report_file = files[1]
 
-    #Caracterizacion del fichero de configuracion a gusto del usuario
-    #report_file = config(config_file)
+
     report = config(config_file)
 
     test_to_do = select_tests(config_file,test_to_do)
@@ -232,7 +227,9 @@ def main():
 
 
     #CREACION DE LOS "CATCHER". Por defecto crearemos 3, uno de cada tipo
+
     catchers = []
+    fact = CatcherFactory()
     mix_catcher = MixCatcherFactory()
     catchers.append(mix_catcher)
     software_catcher = SoftwareCatcherFactory()
@@ -261,10 +258,8 @@ def main():
             pass
 
     for this_auror in aurors:
-        if report is True:
-            this_auror.catch_with_report(report_file, id)
-        else:
-            this_auror.catch()
+        this_auror.catch(report_file, id)
+
 
 if __name__ == '__main__':
     main()

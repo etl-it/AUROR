@@ -1,14 +1,15 @@
+import sys
 from Catcher import catcher
 from Catcher import functions
-from Connectivity import config_connectivity
+from Connectivity.config_connectivity import select_hosts
 
 class Connectivity(catcher.MixCatcher):
 
     def __init__(self, id):
-        MixCatcher.__init__(self, "Connectivity", id)
+        catcher.MixCatcher.__init__(self, "Connectivity", id)
 
     def getId(self, MixCatcher):
-        return MixCatcher.getId()
+        return catcher.MixCatcher.getId()
 
 
     def ping_output_code(self, hostname):
