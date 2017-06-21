@@ -1,5 +1,5 @@
 
-class Catcher:
+class Catcher(object):
     __type = ""
     __name = ""
 

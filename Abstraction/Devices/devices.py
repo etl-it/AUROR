@@ -1,6 +1,6 @@
 from Catcher import catcher
 
-class Devices(HardwareCatcher):
+class Devices(catcher.HardwareCatcher):
 
     def __init__(self, id):
         HardwareCatcher.__init__(self, "Hardware", id)

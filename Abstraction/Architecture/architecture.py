@@ -1,6 +1,6 @@
 from Catcher import catcher
 
-class Architecture(SoftwareCatcher):
+class Architecture(catcher.SoftwareCatcher):
     #"CONSTRUCTOR"
     def __init__(self, id):
         SoftwareCatcher.__init__(self, "Architecture",id)

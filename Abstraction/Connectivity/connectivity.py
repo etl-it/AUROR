@@ -2,7 +2,7 @@ from Catcher import catcher
 from Catcher import functions
 from Connectivity import config_connectivity
 
-class Connectivity(MixCatcher):
+class Connectivity(catcher.MixCatcher):
 
     def __init__(self, id):
         MixCatcher.__init__(self, "Connectivity", id)
