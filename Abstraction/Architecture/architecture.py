@@ -7,8 +7,8 @@ class Architecture(catcher.SoftwareCatcher):
     def __init__(self, id):
         catcher.SoftwareCatcher.__init__(self, "Architecture",id)
 
-    def getId(self, MixCatcher):
-        return cathcer.SoftwareCatcher.getId()
+    def getId(self, SoftwareCatcher):
+        return catcher.SoftwareCatcher.getId()
 
     #Metodo Propio
     def define_architecture(self):
