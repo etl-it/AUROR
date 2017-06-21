@@ -1,12 +1,14 @@
+import sys, os, subprocess, shlex
 from Catcher import catcher
+from Catcher.functions import format1, format2
 
 class Devices(catcher.HardwareCatcher):
 
     def __init__(self, id):
-        HardwareCatcher.__init__(self, "Hardware", id)
+        catcher.HardwareCatcher.__init__(self, "Hardware", id)
 
     def getId(self, HardwareCatcher):
-        return HardwareCatcher.getId()
+        return catcher.HardwareCatcher.getId()
 
     def do_lspci(self, report_file, id):
 

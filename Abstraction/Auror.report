@@ -4,6 +4,9 @@ connectivity = done
 [TEST1]
 architecture = done
 
+[TEST2]
+devices = done
+
 
 
 Report of test<built-in function id>
@@ -18,3 +21,8 @@ Report of test<built-in function id>
 **************************************
 
 [1, 'x86_64']
+
+
+Report of test<built-in function id>
+**************************************
+
