@@ -1,18 +1,23 @@
 #PROGRAMA PRINCIPAL
 
 #Fuciones de Python
-import sys, os, re, copy
+import os
+import sys
+module_path = os.path.abspath(os.getcwd() + '\\..')
+if module_path not in sys.path:
+    sys.path.append(module_path)
+
+#import sys, os, re, copy
 import getopt
 import subprocess
 
 from ConfigParser import RawConfigParser
-from os import path
-
+import os
 
 #Funciones propias
-from Abstaction.Catcher import auror_tests
-from Abstraction.Catcher import functions
-from Abstraction.Catcher import catcher 
+from Catcher import auror_tests
+from Catcher import functions
+from Catcher import catcher
 
 
 #CARGAR FICHERO DE CONFIGURACION POR DEFECTO

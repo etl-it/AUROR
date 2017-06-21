@@ -1,4 +1,4 @@
-from Abstraction.Catcher import catcher
+from Catcher import catcher
 
 class Devices(HardwareCatcher):
 

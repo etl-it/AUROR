@@ -1,6 +1,8 @@
-from Abstraction.Connectivity import connectivity
-from Abstraction.Architecture import architecture
-from Abstraction.Devices import devices
+
+
+from Connectivity import connectivity
+from Architecture import architecture
+from Devices import devices
 
 
 def available_tests():

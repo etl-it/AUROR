@@ -1,4 +1,4 @@
-from Abstraction.Catcher import auror_tests 
+from Catcher import auror_tests 
 
 class CatcherFactory:
     def getSoftwareCatcher(self, name, id): pass
