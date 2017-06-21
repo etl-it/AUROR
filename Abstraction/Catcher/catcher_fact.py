@@ -1,14 +1,12 @@
 from Catcher import auror_tests
 from Connectivity.connectivity import Connectivity
+from Architecture.architecture import Architecture
+from Devices.devices import Devices
 
 class CatcherFactory:
     def getSoftwareCatcher(self, name, id): pass
     def getHardwareCatcher(self, name, id): pass
     def getMixCatcher(self, name, id): pass
-
-def print_test_title(id):
-    s = "Report of test" + str(id)
-    return s
 
 class SoftwareCatcherFactory(CatcherFactory):
     def getSoftwareCatcher(self, name, id):

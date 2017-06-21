@@ -1,6 +1,6 @@
-import sys
+import sys, os, subprocess
 from Catcher import catcher
-from Catcher import functions
+from Catcher.functions import format1, format2
 from Connectivity.config_connectivity import select_hosts
 
 class Connectivity(catcher.MixCatcher):
@@ -55,8 +55,8 @@ class Connectivity(catcher.MixCatcher):
 
         host_to_test = select_hosts()
 
-        try:
-            self.verify_host_list(host_to_test)
-        except:
-            print """ERROR"""
-            sys.exit(2)
+        #try:
+        self.verify_host_list(host_to_test, report_file,id)
+        #except:
+        #    print """ERROR"""
+        #    sys.exit(2)

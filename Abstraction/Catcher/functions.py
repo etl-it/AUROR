@@ -8,6 +8,11 @@ def rep(num, usados):
     return repetido
 
 
+def print_test_title(id):
+    s = "Report of test" + str(id)
+    return s
+
+
 def generate_id(cantidad, min, max, usados):
 
     if max < min:
