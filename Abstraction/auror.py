@@ -168,6 +168,8 @@ def select_tests(config_file,test_to_do):
     cparser = RawConfigParser()
     cparser.read(config_file)
 
+    print("quitar esto; solo es para guardar")
+
     #all_tests = cparser.options('TESTS')
 
     options_tests = cparser.options('TESTS')
