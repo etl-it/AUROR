@@ -43,6 +43,7 @@ class MixCatcher(Catcher):
     def getId(self):
         return Catcher.getId()
     def catch(self): pass
+	print("esto es para quitar")
     def catch_with_report(self, id): pass
 
 class CatcherFactory:
