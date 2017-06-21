@@ -1,12 +1,14 @@
+import sys, os, subprocess
 from Catcher import catcher
+from Catcher.functions import format1, format2
 
 class Architecture(catcher.SoftwareCatcher):
     #"CONSTRUCTOR"
     def __init__(self, id):
-        SoftwareCatcher.__init__(self, "Architecture",id)
+        catcher.SoftwareCatcher.__init__(self, "Architecture",id)
 
     def getId(self, MixCatcher):
-        return SoftwareCatcher.getId()
+        return cathcer.SoftwareCatcher.getId()
 
     #Metodo Propio
     def define_architecture(self):
