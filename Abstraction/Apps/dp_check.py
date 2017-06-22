@@ -63,11 +63,27 @@ def compare(list):
                 is_in.append(list[j])
                 print list[j]
 
+                ##ESCRIBIR ALGUNA INFO AQUI
 
+def version(package):
 
+    info = []
 
+    ##PROBAR OTROS PORQUE LA FORMA QUE TE LO LISTA ES MUY RARRA
+    process = subprocess.Popen(shlex.split('dpkg -l ' + package),
+                                stdout = subprocess.PIPE,
+                              )
 
+    for i in range(1,100):
+        output = process.stdout.readline()
+        if output == '' and process.poll() is not None:
+            break
+        if output:
+            info.append(output)
 
+    rc = process.poll()
+
+    print info
 
 
 
@@ -82,6 +98,10 @@ def main():
     p_deinstall = my_i[1]
 
     compare(p_install)
+
+    version('acpid')
+
+
 
 
 
