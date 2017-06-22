@@ -56,9 +56,12 @@ def compare(list):
 
     for j in range(0, len(list)):
         for i in range(0, len(elements_to_verify)):
-            if list[j] == elements_to_verify[i]:
-                is_in.append(list[i])
-                print app
+            #print(list[j],elements_to_verify[i])
+
+            if list[j]+'\n' == elements_to_verify[i]:
+
+                is_in.append(list[j])
+                print list[j]
 
 
 
