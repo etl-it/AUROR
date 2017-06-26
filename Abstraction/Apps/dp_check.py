@@ -1,4 +1,4 @@
-import sys, os, subprocess, shlex
+import sys, os, subprocess, shlex, commands
 
 def catch_packages():
 
@@ -67,23 +67,47 @@ def compare(list):
 
 def version(package):
 
-    info = []
 
-    ##PROBAR OTROS PORQUE LA FORMA QUE TE LO LISTA ES MUY RARRA
-    process = subprocess.Popen(shlex.split('dpkg -l ' + package),
-                                stdout = subprocess.PIPE,
-                              )
+    my_packages = []
 
-    for i in range(1,100):
+    linea = ''
+
+    process = subprocess.Popen(shlex.split('dpkg -s ' + package),
+                            stdout = subprocess.PIPE,
+                          )
+
+    i = 0
+    find = False
+    name = ''
+    status = ''
+    ver = ''
+
+
+    while find is False:
+
         output = process.stdout.readline()
         if output == '' and process.poll() is not None:
             break
-        if output:
-            info.append(output)
+
+        if i == 0:
+            name = output[:-1]
+        elif i == 1:
+            status = output[:-1]
+        elif i == 7:
+            ver = output[:-1]
+            find = True
+
+        i = i + 1
 
     rc = process.poll()
 
-    print info
+    dates = [name, status, ver]
+
+    return dates
+
+
+
+
 
 
 
@@ -99,7 +123,13 @@ def main():
 
     compare(p_install)
 
-    version('acpid')
+    package = 'apache2'
+
+    dates = version('apache2')
+
+    ver = dates[2]
+
+    print("Version of "+ package + " is " + ver)
 
 
 
