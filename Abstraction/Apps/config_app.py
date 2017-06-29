@@ -45,16 +45,17 @@ def select_sev_pack():
 
 def config_app_conf(dir):
 
-    mode_opt = mode()
-
-    print mode_opt
-
     current_dir = os.getcwd()
     config_app_conf = "/usr/lab/alum/0330717/Auror_workspace/app.conf"
     cparser = RawConfigParser()
 
     if current_dir != dir :
         os.chdir(dir)
+
+
+    mode_opt = mode()
+
+    print mode_opt
 
     pack_tests = []
 
