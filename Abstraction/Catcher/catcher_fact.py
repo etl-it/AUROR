@@ -12,7 +12,7 @@ class SoftwareCatcherFactory(CatcherFactory):
     def getSoftwareCatcher(self, name, id):
         if name == "Architecture":
             return Architecture(id)
-        elif name == "Ethtool":
+        elif name == "App":
             return Ethtool(id)
 
 

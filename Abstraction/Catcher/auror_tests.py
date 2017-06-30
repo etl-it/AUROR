@@ -1,13 +1,14 @@
 from Connectivity.connectivity import Connectivity
 from Architecture.architecture import Architecture
 from Devices.devices import Devices
+from Apps.app import App
 
 def available_tests():
     print """
         1 => Connectivity
         2 => Architecture
         3 => Devices
-        .
+        4 => App
         .
         .
     """
@@ -17,7 +18,7 @@ def sort(test):
 
     possible_mix_tests = ["Connectivity"]
     possible_hardware_tests = ["Devices", "hola", "adios"]
-    possible_software_tests = ["Architecture", "venga", "funciona"]
+    possible_software_tests = ["Architecture", "App"]
 
     for i in possible_mix_tests:
         i_index = possible_mix_tests.index(i)

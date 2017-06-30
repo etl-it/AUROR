@@ -155,11 +155,11 @@ def config(config_file):
                     cparser.set('TESTS', 'Test2', 'Architecture')
                 elif int(test) == 3:
                     cparser.set('TESTS', 'Test3', 'Devices')
+                elif int(test) == 4:
+                    cparser.set('TESTS', 'Test4', 'Apps')
 
             cparser.write(archivo) #Se escribe el archivo de configuracion
-    #     else:
-    #         exit() #Finalizo la aplicacion si el usuario no quiere configurar nada
-    # #return output_file
+
     return report
 
 def select_tests(config_file,test_to_do):
